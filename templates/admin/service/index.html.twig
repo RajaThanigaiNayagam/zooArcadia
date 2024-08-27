@@ -21,8 +21,8 @@
                 <td>{{ service.nom }}</td>
                 <td>{{ service.description }}</td>
                 <td>
-                    <a href="{{ path('app_admin_service_edit', {'id': service.id}) }}">modifier</a>
-                    <a href="{{ path('app_admin_service_delete', {'id': service.id}) }}">supprimer</a>
+                    <a href="{{ path('app_admin_service_show', {'id': service.id}) }}">show</a>
+                    <a href="{{ path('app_admin_service_edit', {'id': service.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,6 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_service_new') }}"><button class="btn btn-lg btn-primary">Create new</button></a>
-    
+    <a href="{{ path('app_admin_service_new') }}">Create new</a>
 {% endblock %}

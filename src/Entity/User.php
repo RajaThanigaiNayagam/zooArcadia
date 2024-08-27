@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
+#[UniqueEntity(fields: ['username'], message: 'Il existe déjà un compte avec ce nom d\'utilisateur')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -31,14 +35,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $prenom = null;
+
+    /**
+     * @var Collection<int, Role>
+     */
+    #[ORM\OneToMany(targetEntity: Role::class, mappedBy: 'user')]
+    private Collection $roleno;
+
+    /**
+     * @var Collection<int, RapportVeterinaire>
+     */
+    #[ORM\OneToMany(targetEntity: RapportVeterinaire::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $rapport_veterinaire;
+
+    /**
+     * @var Collection<int, RapportEmployee>
+     */
+    #[ORM\OneToMany(targetEntity: RapportEmployee::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $user;
+
+    #[ORM\Column]
+    private bool $isVerified = false;
+
+    public function __construct()
+    {
+        $this->roleno = new ArrayCollection();
+        $this->rapport_veterinaire = new ArrayCollection();
+        $this->user = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -147,6 +179,108 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): static
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Role>
+     */
+    public function getNo(): Collection
+    {
+        return $this->roleno;
+    }
+
+    public function addRoleNo(Role $roleno): static
+    {
+        if (!$this->roleno->contains($roleno)) {
+            $this->roleno->add($roleno);
+            $roleno->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoleNo(Role $roleno): static
+    {
+        if ($this->roleno->removeElement($roleno)) {
+            // set the owning side to null (unless already changed)
+            if ($roleno->getUser() === $this) {
+                $roleno->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RapportVeterinaire>
+     */
+    public function getRapportVeterinaire(): Collection
+    {
+        return $this->rapport_veterinaire;
+    }
+
+    public function addRapportVeterinaire(RapportVeterinaire $rapportVeterinaire): static
+    {
+        if (!$this->rapport_veterinaire->contains($rapportVeterinaire)) {
+            $this->rapport_veterinaire->add($rapportVeterinaire);
+            $rapportVeterinaire->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRapportVeterinaire(RapportVeterinaire $rapportVeterinaire): static
+    {
+        if ($this->rapport_veterinaire->removeElement($rapportVeterinaire)) {
+            // set the owning side to null (unless already changed)
+            if ($rapportVeterinaire->getUser() === $this) {
+                $rapportVeterinaire->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RapportEmployee>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(RapportEmployee $user): static
+    {
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
+            $user->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(RapportEmployee $user): static
+    {
+        if ($this->user->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getUser() === $this) {
+                $user->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
