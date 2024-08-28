@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Controller\User;
+
+use App\Entity\Avis;
+use App\Form\Avis1Type;
+use App\Repository\AvisRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route('/user/avis')]
+class AvisController extends AbstractController
+{
+    #[Route('/new', name: 'app_user_avis_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $avi = new Avis();
+        $form = $this->createForm(Avis1Type::class, $avi);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($avi);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('user/avis/new.html.twig', [
+            'avi' => $avi,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_user_avis_show', methods: ['GET'])]
+    public function show(Avis $avi): Response
+    {
+        return $this->render('user/avis/show.html.twig', [
+            'avi' => $avi,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_user_avis_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Avis $avi, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(Avis1Type::class, $avi);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_user_avis_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('user/avis/edit.html.twig', [
+            'avi' => $avi,
+            'form' => $form,
+        ]);
+    }
+}

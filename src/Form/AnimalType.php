@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Animal;
+use App\Entity\AnimalImage;
 use App\Entity\Habitat;
 use App\Entity\Race;
 use App\Entity\RapportVeterinaire;
@@ -18,17 +19,13 @@ class AnimalType extends AbstractType
         $builder
             ->add('prenom')
             ->add('etat')
-            ->add('rapport_veterinaire', EntityType::class, [
-                'class' => RapportVeterinaire::class,
-                'choice_label' => 'id',
-            ])
             ->add('race', EntityType::class, [
                 'class' => Race::class,
-                'choice_label' => 'id',
+                'choice_label' => 'label',
             ])
             ->add('habitat', EntityType::class, [
                 'class' => Habitat::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
         ;
     }

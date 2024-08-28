@@ -30,6 +30,15 @@ class RapportVeterinaire
     #[ORM\JoinColumn(nullable: false)]
     private ?Animal $animal = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $status = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $food = null;
+
+    #[ORM\Column]
+    private ?float $foodgrammage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,6 +89,42 @@ class RapportVeterinaire
     public function setAnimal(?Animal $animal): static
     {
         $this->animal = $animal;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getFood(): ?string
+    {
+        return $this->food;
+    }
+
+    public function setFood(string $food): static
+    {
+        $this->food = $food;
+
+        return $this;
+    }
+
+    public function getFoodgrammage(): ?float
+    {
+        return $this->foodgrammage;
+    }
+
+    public function setFoodgrammage(float $foodgrammage): static
+    {
+        $this->foodgrammage = $foodgrammage;
 
         return $this;
     }

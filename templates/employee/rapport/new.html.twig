@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RapportEmployee{% endblock %}
+
+{% block body %}
+    <h1>Create new RapportEmployee</h1>
+
+    {{ include('employee/rapport/_form.html.twig') }}
+
+    <a href="{{ path('app_employee_rapport_index') }}">back to list</a>
+{% endblock %}

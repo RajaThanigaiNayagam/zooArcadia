@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animal index{% endblock %}
+{% block title %}Animaux{% endblock %}
 
 {% block body %}
-    <h1>Animal index</h1>
+    <h1>Les animaux de notre zoo</h1>
 
     <table class="table">
         <thead>
@@ -21,8 +21,8 @@
                 <td>{{ animal.prenom }}</td>
                 <td>{{ animal.etat }}</td>
                 <td>
-                    <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}">show</a>
-                    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}">View</a>
+                    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

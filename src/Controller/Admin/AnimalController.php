@@ -45,8 +45,11 @@ class AnimalController extends AbstractController
     #[Route('/{id}', name: 'app_admin_animal_show', methods: ['GET'])]
     public function show(Animal $animal): Response
     {
+        $races = $animal->getRace()->getLabel();
+        //dd($races);
         return $this->render('admin/animal/show.html.twig', [
             'animal' => $animal,
+            'races' => $races,
         ]);
     }
 

@@ -1,7 +1,7 @@
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Zoo ARCADIA</a>
+                <a class="navbar-brand" href="{{ path('app_home') }}">Zoo ARCADIA</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -9,23 +9,53 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <!--<a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>-->
-                            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="{{ path('app_user_habitat_index') }}">Habitat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Habitat</a>
+                            <a class="nav-link" href="{{ path('app_user_service_index') }}">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_user_avis_new') }}">Donnez votre avis</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                Admin
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Services</a></li>
-                                <li><a class="dropdown-item" href="#">Habitat</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_admin_user_index') }}">User</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_admin_habitat_index') }}">Habitat</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_admin_animal_index') }}">Animal</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_admin_animal_image_index') }}">Images d'animaux</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_admin_race_index') }}">Race d'animaux</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_admin_service_index') }}">Services</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Vétérinaire
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ path('app_veterinaire_rapport_index') }}">Tout son rapport</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_veterinaire_rapport_new') }}">Créer un rapport</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_veterinaire_habitat_index') }}">Habitat des animaux</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_veterinaire_animal_index') }}">Tous les animaux</a></li>
+                                <!--<li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Employé(e)
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ path('app_employee_rapport_index') }}">Les Rapports</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_employee_avis_index') }}">Avis clients</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_employee_service_index') }}">Les services au zoo</a></li>
                             </ul>
                         </li>
                         <!--<li class="nav-item">

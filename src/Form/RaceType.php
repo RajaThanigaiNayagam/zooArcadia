@@ -17,7 +17,7 @@ class RaceType extends AbstractType
             ->add('label')
             ->add('animal', EntityType::class, [
                 'class' => Animal::class,
-                'choice_label' => 'id',
+                'choice_label' => 'prenom',
             ])
         ;
     }

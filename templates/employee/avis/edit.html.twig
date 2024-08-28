@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les avis clients{% endblock %}
+
+{% block body %}
+    <h1>Autoriser ou non les avis clients</h1>
+
+    {{ include('employee/avis/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_employee_avis_index') }}">Retour à la liste</a>
+
+{% endblock %}

@@ -21,9 +21,6 @@ class Animal
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $etat = null;
 
-    #[ORM\OneToOne(mappedBy: 'animal', cascade: ['persist', 'remove'])]
-    private ?RapportVeterinaire $rapport_veterinaire = null;
-
     #[ORM\OneToOne(inversedBy: 'animal', cascade: ['persist', 'remove'])]
     private ?Race $race = null;
 
@@ -43,10 +40,17 @@ class Animal
     #[ORM\OneToMany(targetEntity: RapportVeterinaire::class, mappedBy: 'animal')]
     private Collection $rapportVeterinaires;
 
+    /**
+     * @var Collection<int, AnimalImage>
+     */
+    #[ORM\OneToMany(targetEntity: AnimalImage::class, mappedBy: 'animal', orphanRemoval: true)]
+    private Collection $animalImages;
+
     public function __construct()
     {
         $this->rapportEmployees = new ArrayCollection();
         $this->rapportVeterinaires = new ArrayCollection();
+        $this->animalImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,29 +82,12 @@ class Animal
         return $this;
     }
 
-    public function getRapportVeterinaire(): ?RapportVeterinaire
-    {
-        return $this->rapport_veterinaire;
-    }
-
-    public function setRapportVeterinaire(RapportVeterinaire $rapport_veterinaire): static
-    {
-        // set the owning side of the relation if necessary
-        if ($rapport_veterinaire->getAnimal() !== $this) {
-            $rapport_veterinaire->setAnimal($this);
-        }
-
-        $this->rapport_veterinaire = $rapport_veterinaire;
-
-        return $this;
-    }
-
-    public function getRace(): ?race
+    public function getRace(): ?Race
     {
         return $this->race;
     }
 
-    public function setRace(?race $race): static
+    public function setRace(?Race $race): static
     {
         $this->race = $race;
 
@@ -177,5 +164,40 @@ class Animal
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, AnimalImage>
+     */
+    public function getAnimalImages(): Collection
+    {
+        return $this->animalImages;
+    }
+
+    public function addAnimalImage(AnimalImage $animalImage): static
+    {
+        if (!$this->animalImages->contains($animalImage)) {
+            $this->animalImages->add($animalImage);
+            $animalImage->setAnimal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimalImage(AnimalImage $animalImage): static
+    {
+        if ($this->animalImages->removeElement($animalImage)) {
+            // set the owning side to null (unless already changed)
+            if ($animalImage->getAnimal() === $this) {
+                $animalImage->setAnimal(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->prenom;
     }
 }
