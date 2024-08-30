@@ -18,9 +18,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_animal_image_index') }}">back to list</a>
+    <img src="{{ asset( animal_image.imageData ) }}" alt="" class="img-rounded" width ="200" height="300" tyle="">
 
-    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}">edit</a>
+    <a href="{{ path('app_admin_animal_image_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}">Modifier</a>
 
     {{ include('admin/animal_image/_delete_form.html.twig') }}
 {% endblock %}

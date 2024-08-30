@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Image_data</th>
+                <th>image</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +20,11 @@
                 <td>{{ animal_image.id }}</td>
                 <td>{{ animal_image.imageData }}</td>
                 <td>
-                    <a href="{{ path('app_admin_animal_image_show', {'id': animal_image.id}) }}">show</a>
-                    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}">edit</a>
+                    <img src="{{ asset( animal_image.imageData ) }}" alt="" class="img-rounded" width ="100" height="100" tyle="">
+                </td>
+                <td>
+                    <a href="{{ path('app_admin_animal_image_show', {'id': animal_image.id}) }}">View</a>
+                    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +35,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_animal_image_new') }}">Create new</a>
+    <a href="{{ path('app_admin_animal_image_new') }}">Créer nouveau</a>
+    <img src="{{ asset('image/animal/La girafe.jpg') }}" alt="" class="thumb-image" style="">
 {% endblock %}

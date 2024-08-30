@@ -14,14 +14,15 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/animal/image')]
 class AnimalImageController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_animal_image_index', methods: ['GET'])]
+    #[Route('/index', name: 'app_admin_animal_image_index', methods: ['GET'])]
     public function index(AnimalImageRepository $animalImageRepository): Response
     {
+        //dd($animalImageRepository);
         return $this->render('admin/animal_image/index.html.twig', [
             'animal_images' => $animalImageRepository->findAll(),
         ]);
     }
-
+    
     #[Route('/new', name: 'app_admin_animal_image_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -45,8 +46,10 @@ class AnimalImageController extends AbstractController
     #[Route('/{id}', name: 'app_admin_animal_image_show', methods: ['GET'])]
     public function show(AnimalImage $animalImage): Response
     {
+        $animal = $animalImage->getAnimal()->getPrenom();
         return $this->render('admin/animal_image/show.html.twig', [
             'animal_image' => $animalImage,
+            'animal' => $animal,
         ]);
     }
 

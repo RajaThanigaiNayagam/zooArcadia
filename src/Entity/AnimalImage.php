@@ -14,8 +14,8 @@ class AnimalImage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $image_data;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string  $image_data = null;
 
     #[ORM\ManyToOne(inversedBy: 'animalImages')]
     #[ORM\JoinColumn(nullable: false)]
@@ -26,12 +26,12 @@ class AnimalImage
         return $this->id;
     }
 
-    public function getImageData()
+    public function getImageData(): ?string
     {
         return $this->image_data;
     }
 
-    public function setImageData($image_data): static
+    public function setImageData(?string $image_data): static
     {
         $this->image_data = $image_data;
 
