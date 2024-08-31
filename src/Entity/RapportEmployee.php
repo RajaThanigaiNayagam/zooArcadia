@@ -20,7 +20,7 @@ class RapportEmployee
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $quantité = null;
+    private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'user')]
     #[ORM\JoinColumn(nullable: false)]
@@ -59,14 +59,14 @@ class RapportEmployee
         return $this;
     }
 
-    public function getQuantité(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->quantité;
+        return $this->quantity;
     }
 
-    public function setQuantité(?int $quantité): static
+    public function setQuantity(?int $quantity): static
     {
-        $this->quantité = $quantité;
+        $this->quantity = $quantity;
 
         return $this;
     }

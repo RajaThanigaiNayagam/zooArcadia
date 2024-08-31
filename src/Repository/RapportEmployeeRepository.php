@@ -16,6 +16,21 @@ class RapportEmployeeRepository extends ServiceEntityRepository
         parent::__construct($registry, RapportEmployee::class);
     }
 
+        /**
+         * @return RapportEmployee[] Returns an array of RapportEmployee objects
+         */
+        public function findByUser($UserId): array
+        {
+            return $this->createQueryBuilder('r')
+                ->andWhere('r.user = :val')
+                ->setParameter('val', $UserId)
+                ->orderBy('r.id', 'ASC')
+                ->setMaxResults(10)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
     //    /**
     //     * @return RapportEmployee[] Returns an array of RapportEmployee objects
     //     */

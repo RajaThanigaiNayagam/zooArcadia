@@ -3,9 +3,10 @@
 namespace App\Controller\Employee;
 
 use App\Entity\RapportEmployee;
-use App\Form\RapportEmployee1Type;
+use App\Form\RapportEmployeeType;
 use App\Repository\RapportEmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,8 +18,10 @@ class RapportController extends AbstractController
     #[Route('/', name: 'app_employee_rapport_index', methods: ['GET'])]
     public function index(RapportEmployeeRepository $rapportEmployeeRepository): Response
     {
+        $ActualUser = $this->getUser()->getId() ;
+        
         return $this->render('employee/rapport/index.html.twig', [
-            'rapport_employees' => $rapportEmployeeRepository->findAll(),
+            'rapport_employees' => $rapportEmployeeRepository->findByUser($ActualUser) ,
         ]);
     }
 
@@ -26,10 +29,14 @@ class RapportController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $rapportEmployee = new RapportEmployee();
-        $form = $this->createForm(RapportEmployee1Type::class, $rapportEmployee);
+        $form = $this->createForm(RapportEmployeeType::class, $rapportEmployee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ActualUser = $this->getUser();
+            //dd($ActualUser);
+            $rapportEmployee->setUser($ActualUser);
+
             $entityManager->persist($rapportEmployee);
             $entityManager->flush();
 
@@ -53,7 +60,7 @@ class RapportController extends AbstractController
     #[Route('/{id}/edit', name: 'app_employee_rapport_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, RapportEmployee $rapportEmployee, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(RapportEmployee1Type::class, $rapportEmployee);
+        $form = $this->createForm(RapportEmployeeType::class, $rapportEmployee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

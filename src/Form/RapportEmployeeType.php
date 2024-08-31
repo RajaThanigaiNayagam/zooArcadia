@@ -19,11 +19,11 @@ class RapportEmployeeType extends AbstractType
             ->add('createdAt', null, [
                 'widget' => 'single_text',
             ])
-            ->add('quantité')
-            ->add('user', EntityType::class, [
+            ->add('quantity')
+            /*->add('user', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
-            ])
+            ])*/
             ->add('animal', EntityType::class, [
                 'class' => Animal::class,
                 'choice_label' => 'id',
