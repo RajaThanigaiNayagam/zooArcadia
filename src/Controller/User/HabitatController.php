@@ -22,60 +22,11 @@ class HabitatController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_user_habitat_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $habitat = new Habitat();
-        $form = $this->createForm(Habitat1Type::class, $habitat);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($habitat);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_habitat_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('user/habitat/new.html.twig', [
-            'habitat' => $habitat,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_user_habitat_show', methods: ['GET'])]
     public function show(Habitat $habitat): Response
     {
         return $this->render('user/habitat/show.html.twig', [
             'habitat' => $habitat,
         ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_user_habitat_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Habitat $habitat, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(Habitat1Type::class, $habitat);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_habitat_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('user/habitat/edit.html.twig', [
-            'habitat' => $habitat,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_user_habitat_delete', methods: ['POST'])]
-    public function delete(Request $request, Habitat $habitat, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$habitat->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($habitat);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_user_habitat_index', [], Response::HTTP_SEE_OTHER);
     }
 }

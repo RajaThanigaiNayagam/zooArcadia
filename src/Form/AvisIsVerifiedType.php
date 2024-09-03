@@ -6,15 +6,24 @@ use App\Entity\Avis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class Avis1Type extends AbstractType
+class AvisIsVerifiedType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo')
-            ->add('commentaire')
-            ->add('isVisible')
+            ->add('pseudo', null, [
+                'disabled'  => true,
+            ])
+            ->add('commentaire', null, [
+                'disabled'   => true,
+            ])
+            
+            ->add('Visible', CheckboxType::class, [
+                'mapped'  => false,
+                'required'  => false,
+            ])
         ;
     }
 

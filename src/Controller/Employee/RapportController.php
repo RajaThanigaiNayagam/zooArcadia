@@ -34,7 +34,6 @@ class RapportController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ActualUser = $this->getUser();
-            //dd($ActualUser);
             $rapportEmployee->setUser($ActualUser);
 
             $entityManager->persist($rapportEmployee);

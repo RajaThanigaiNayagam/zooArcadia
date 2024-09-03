@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Habitat{% endblock %}
+{% block title %}Habitat des animaux{% endblock %}
 
 {% block body %}
-    <h1>Habitat</h1>
+    <h1>Habitat des animaux</h1>
 
     <table class="table">
         <tbody>
@@ -20,15 +20,11 @@
                 <td>{{ habitat.description }}</td>
             </tr>
             <tr>
-                <th>Commentaire_habitat</th>
+                <th>Commentaires sur l'habitat</th>
                 <td>{{ habitat.commentaireHabitat }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_habitat_index') }}">back to list</a>
-
-    <a href="{{ path('app_user_habitat_edit', {'id': habitat.id}) }}">edit</a>
-
-    {{ include('user/habitat/_delete_form.html.twig') }}
+    <a href="{{ path('app_user_habitat_index') }}">Retour à la liste</a>
 {% endblock %}

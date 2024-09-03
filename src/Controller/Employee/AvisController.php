@@ -3,6 +3,7 @@
 namespace App\Controller\Employee;
 
 use App\Entity\Avis;
+use App\Form\AvisIsVerifiedType;
 use App\Form\AvisType;
 use App\Repository\AvisRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,11 +28,10 @@ class AvisController extends AbstractController
     {
         $avi = new Avis();
         $form = $this->createForm(AvisType::class, $avi);
-        dd($form);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $entityManager->persist($avi);
             $entityManager->flush();
 
@@ -55,10 +55,20 @@ class AvisController extends AbstractController
     #[Route('/{id}/edit', name: 'app_employee_avis_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Avis $avi, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(AvisType::class, $avi);
+        $form = $this->createForm(AvisIsVerifiedType::class, $avi);
         $form->handleRequest($request);
+        //dd($form->getData());
+        #$avi->setPseudo($request->getpseudo() );
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ( $form->get('Visible')->getData() ){
+                $avi->setVisible(true);
+            } else {
+                $avi->setVisible(false);
+            };
+            
+            //dd( $form->get('Visible')->getData() );
+            $entityManager->persist($avi);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_employee_avis_index', [], Response::HTTP_SEE_OTHER);

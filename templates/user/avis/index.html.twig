@@ -24,7 +24,6 @@
                 <td>{{ avi.isVisible ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}">View</a>
-                    <a href="{{ path('app_employee_avis_edit', {'id': avi.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

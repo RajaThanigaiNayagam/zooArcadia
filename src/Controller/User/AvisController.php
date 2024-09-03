@@ -3,7 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\Avis;
-use App\Form\Avis1Type;
+use App\Form\AvisType;
 use App\Repository\AvisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,11 +14,19 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/user/avis')]
 class AvisController extends AbstractController
 {
+    #[Route('/', name: 'app_user_avis_index', methods: ['GET'])]
+    public function index(AvisRepository $avisRepository): Response
+    {
+        return $this->render('user/avis/index.html.twig', [
+            'avis' => $avisRepository->findAll(),
+        ]);
+    }
+
     #[Route('/new', name: 'app_user_avis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $avi = new Avis();
-        $form = $this->createForm(Avis1Type::class, $avi);
+        $form = $this->createForm(AvisType::class, $avi);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,7 +53,7 @@ class AvisController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_avis_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Avis $avi, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Avis1Type::class, $avi);
+        $form = $this->createForm(AvisType::class, $avi);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

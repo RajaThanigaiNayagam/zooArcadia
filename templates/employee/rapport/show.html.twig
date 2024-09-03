@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RapportEmployee{% endblock %}
+{% block title %}Rapport créé par l'employé{% endblock %}
 
 {% block body %}
-    <h1>RapportEmployee</h1>
+    <h1>Rapport créé par l'employé</h1>
 
     <table class="table">
         <tbody>
@@ -16,7 +16,7 @@
                 <td>{{ rapport_employee.nourriture }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Rapport créé à</th>
                 <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
 
     <a href="{{ path('app_employee_rapport_index') }}">back to list</a>
 
-    <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}">edit</a>
+    <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}">Modifier</a>
 
     {{ include('employee/rapport/_delete_form.html.twig') }}
 {% endblock %}
