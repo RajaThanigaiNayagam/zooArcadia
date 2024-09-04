@@ -1,0 +1,26 @@
+{
+  "name": "zooarcadia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajaThanigaiNayagam/zooArcadia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RajaThanigaiNayagam/zooArcadia/issues"
+  },
+  "homepage": "https://github.com/RajaThanigaiNayagam/zooArcadia#readme",
+  "engines": {
+  "node": "16.17.1",
+  "npm": " 8.15.0"
+}
+}
