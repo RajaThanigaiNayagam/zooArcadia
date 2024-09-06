@@ -1,7 +1,6 @@
 {
   "name": "zooarcadia",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -20,7 +19,8 @@
   },
   "homepage": "https://github.com/RajaThanigaiNayagam/zooArcadia#readme",
   "engines": {
-  "node": "16.17.1",
-  "npm": " 8.15.0"
-}
+    "node": "16.17.1",
+    "npm": " 8.15.0"
+  },
+  "description": ""
 }
