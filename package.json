@@ -16,6 +16,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RajaThanigaiNayagam/zooArcadia/issues"
+  },"devDependencies": {
+    "@symfony/webpack-encore": "^0.21.0"
   },
   "homepage": "https://github.com/RajaThanigaiNayagam/zooArcadia#readme",
   "engines": {
