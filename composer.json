@@ -110,5 +110,8 @@
         "symfony/phpunit-bridge": "^7.1",
         "symfony/stopwatch": "7.1.*",
         "symfony/web-profiler-bundle": "7.1.*"
-    }
+    },
+    "compile": [
+        "node_modules/.bin/encore production"
+    ]
 }
