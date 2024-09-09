@@ -46,9 +46,11 @@ class AnimalController extends AbstractController
     public function show(Animal $animal): Response
     {
         $races = $animal->getRace()->getLabel();
-        //dd($races);
+        //$animalImages = $animal->getAnimalImages()->getImageData();
+        //dd($animalImages);
         return $this->render('admin/animal/show.html.twig', [
             'animal' => $animal,
+            //'animalImages' => $animalImages,
             'races' => $races,
         ]);
     }

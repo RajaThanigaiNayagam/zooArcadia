@@ -24,6 +24,14 @@
                     <td>{{ race.id }}</td>
                 {% endfor %}
             </tr>
+            <tr>
+                <th>Image des animal</th>
+                <table class="table"><tbody>
+                {% for animalImage in animal.animalImages %}
+                    <tr><td>{{ animalImage.getImageData() }}</td></tr>
+                {% endfor %}
+                </table></tbody>
+            </tr>
             </tr>
         </tbody>
     </table>
