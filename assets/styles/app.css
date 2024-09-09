@@ -58,13 +58,13 @@ body {
 	margin-left: 0.8em;
 }
 .navbar .navbar-nav > li > a {
-    color: #118A61;
+    color: #105030;   /*118A61;*/
 	/*font-family: 'Rancho-Regular';*/
     font-size: 1.2em;
 }
 .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
     color: #10311d;
-    background-color: rgba(249, 255, 247, 0.43);
+    background-color: #118A61;
 }
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover, .navbar .navbar-nav > .active > a:focus {
     color: #10311d;
