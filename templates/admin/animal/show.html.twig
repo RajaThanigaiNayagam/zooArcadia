@@ -24,17 +24,19 @@
                     <td>{{ race.id }}</td>
                 {% endfor %}
             </tr>
-            <tr>
-                <th>Image des animal</th>
-                <table class="table"><tbody>
-                {% for animalImage in animal.animalImages %}
-                    <tr><td>{{ animalImage.getImageData() }}</td></tr>
-                {% endfor %}
-                </table></tbody>
-            </tr>
-            </tr>
         </tbody>
     </table>
+        <table class="table">
+            <tbody>
+                <h3>Image des animal</h3>
+                <tr>
+                {% for animalImage in animal.animalImages %}
+                    <th>{{ animalImage.getImageData() }}</th>
+                    <th><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="img-rounded" width ="200" height="300" tyle=""></th>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
 
     <a href="{{ path('app_admin_animal_index') }}">Retour à la listet</a>
 
