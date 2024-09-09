@@ -1,3 +1,107 @@
+
+body{
+	padding:0 0;
+	margin:0 0;
+    font-family: 'Rancho', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+	padding:0 0;
+	margin:0 0;
+}
+p{
+	padding:0 0;
+	margin:0 0;
+}
+ul{
+	padding:0 0;
+	margin:0 0;	
+}
+body{
+	padding:0 0;
+	margin:0 0; 
+	font-family: 'OpenSans-Regular'
+}
+
 body {
     background-color: #118A61;
+}
+
+.navbar-brand {
+    text-decoration: none;
+	color:#105030;
+	font-size: 2em;
+    font-family: 'Rancho-Regular';
+    text-transform: capitalize;
+    letter-spacing: 2px;
+	line-height: .5em;
+
+}
+
+.navbar-brand {
+    float: left;
+	margin-left: 0.8em;
+}
+
+.navbar, .navbar .navbar-brand, .navbar .navbar-nav {
+    /*background-color: #5ab645;*/
+}
+
+.navbar-nav {
+    float: right;
+    margin: 0;
+	margin-left: 5.8em;
+}
+
+.authentification {
+	margin-left: 0.8em;
+}
+.navbar .navbar-nav > li > a {
+    color: #118A61;
+	/*font-family: 'Rancho-Regular';*/
+    font-size: 1.2em;
+}
+.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+    color: #10311d;
+    background-color: rgba(249, 255, 247, 0.43);
+}
+.navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover, .navbar .navbar-nav > .active > a:focus {
+    color: #10311d;
+    background-color: rgba(249, 255, 247, 0.43);
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #10311d;
+    text-decoration: none;
+    background-color: #118A61
+}
+
+h1 {
+    font-size: 2em;
+    color: #10311d;
+    font-family: 'Rancho-Regular'
+}
+.container {
+    font-size: 1em;
+    color: #10311d;
+    font-family: 'Rancho-Regular'
+}
+
+
+
+@media (max-width:991px){
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 10px 10px;
+    }
+    .navbar-brand h1 a {
+        font-size: 1em;
+    }
+    .navbar .navbar-nav > li > a {
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 1em;
+    }
 }
