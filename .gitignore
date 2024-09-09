@@ -23,6 +23,8 @@
 #/public/build/
 npm-debug.log
 yarn-error.log
+symfony.lock
+package-lock.json
 yarn-lock.yaml
 pnpm-lock.yaml
 ###< symfony/webpack-encore-bundle ###
