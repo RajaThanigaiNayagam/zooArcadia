@@ -31,19 +31,20 @@ body {
 .navbar-brand {
     text-decoration: none;
 	color:#105030;
-	font-size: 2em;
+	font-size: 1.5em;
     font-family: 'Rancho-Regular';
     text-transform: capitalize;
     letter-spacing: 2px;
 	line-height: .5em;
 }
 
-.navbar-brand {
-    float: left;
-	margin-left: 0.8em;
+.navbar-brand-div {
+    float: center;
+	margin-top: 0.8;
+	margin-left: 0.8;
 }
 
-.navbar-brand > a:hover, .navbar-brand > a:focus {
+.container-fluid .navbar-brand-div > a:hover, .container-fluid .navbar-brand-div > a:focus {
     background-color: #118A61;
 }
 
