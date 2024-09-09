@@ -24,9 +24,5 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress",
         "postinstall": "encore production --progress"
-    },
-    "engines": {
-      "node": "^20.0.0",
-      "npm": "^8.0.0"
     }
 }
