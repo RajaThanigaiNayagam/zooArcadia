@@ -36,12 +36,15 @@ body {
     text-transform: capitalize;
     letter-spacing: 2px;
 	line-height: .5em;
-
 }
 
 .navbar-brand {
     float: left;
 	margin-left: 0.8em;
+}
+
+.navbar-brand > a:hover, .navbar-brand > a:focus {
+    background-color: #118A61;
 }
 
 .navbar, .navbar .navbar-brand, .navbar .navbar-nav {
