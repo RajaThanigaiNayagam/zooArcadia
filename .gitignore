@@ -23,6 +23,8 @@
 #/public/build/
 npm-debug.log
 yarn-error.log
+yarn-lock.yaml
+pnpm-lock.yaml
 ###< symfony/webpack-encore-bundle ###
 
 ###> symfony/asset-mapper ###
