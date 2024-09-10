@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Animal{% endblock %}
+{% block title %}Nouvel Animal{% endblock %}
 
 {% block body %}
-    <h1>Create new Animal</h1>
+    <h1>Créer un nuvel animal</h1>
 
     {{ include('admin/animal/_form.html.twig') }}
 
-    <a href="{{ path('app_admin_animal_index') }}">back to list</a>
+    <a href="{{ path('app_admin_animal_index') }}"><button class="btn btn-outline-dark">Retour à la liste</button></a>
 {% endblock %}

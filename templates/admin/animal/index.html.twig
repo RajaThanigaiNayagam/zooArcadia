@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animaux{% endblock %}
+{% block title %}Animaux de notre zoo{% endblock %}
 
 {% block body %}
     <h1>Les animaux de notre zoo</h1>
@@ -21,8 +21,8 @@
                 <td>{{ animal.prenom }}</td>
                 <td>{{ animal.etat }}</td>
                 <td>
-                    <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}">View</a>
-                    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}">Modifier</a>
+                    <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_animal_new') }}">Create new</a>
+    <a href="{{ path('app_admin_animal_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
 {% endblock %}

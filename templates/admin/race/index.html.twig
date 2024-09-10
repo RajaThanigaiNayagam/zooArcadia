@@ -19,17 +19,17 @@
                 <td>{{ race.id }}</td>
                 <td>{{ race.label }}</td>
                 <td>
-                    <a href="{{ path('app_admin_race_show', {'id': race.id}) }}">show</a>
-                    <a href="{{ path('app_admin_race_edit', {'id': race.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_race_show', {'id': race.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                    <a href="{{ path('app_admin_race_edit', {'id': race.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_race_new') }}">Create new</a>
+    <a href="{{ path('app_admin_race_new') }}"><button class="btn btn-outline-dark">Créer nouveau</button></a>
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RapportEmployee index{% endblock %}
+{% block title %}Liste de rapport des employés{% endblock %}
 
 {% block body %}
-    <h1>RapportEmployee index</h1>
+    <h1>Liste de rapport</h1>
 
     <table class="table">
         <thead>
@@ -23,17 +23,17 @@
                 <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ rapport_employee.quantity }}</td>
                 <td>
-                    <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}">show</a>
-                    <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}">edit</a>
+                    <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                    <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_employee_rapport_new') }}">Create new</a>
+    <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
 {% endblock %}

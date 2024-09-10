@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Habitat index{% endblock %}
+{% block title %}Liste des habitats{% endblock %}
 
 {% block body %}
-    <h1>Habitat index</h1>
+    <h1>Liste des habitat</h1>
 
     <table class="table">
         <thead>
@@ -23,17 +23,17 @@
                 <td>{{ habitat.description }}</td>
                 <td>{{ habitat.commentaireHabitat }}</td>
                 <td>
-                    <a href="{{ path('app_veterinaire_habitat_show', {'id': habitat.id}) }}">show</a>
-                    <a href="{{ path('app_veterinaire_habitat_edit', {'id': habitat.id}) }}">edit</a>
+                    <a href="{{ path('app_veterinaire_habitat_show', {'id': habitat.id}) }}"><button class="btn btn-outline-dark">View</button></a>
+                    <a href="{{ path('app_veterinaire_habitat_edit', {'id': habitat.id}) }}"><button class="btn btn-outline-dark">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_veterinaire_habitat_new') }}">Create new</a>
+    <a href="{{ path('app_veterinaire_habitat_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
 {% endblock %}

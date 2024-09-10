@@ -32,15 +32,15 @@
                 <tr>
                 {% for animalImage in animal.animalImages %}
                     <th>{{ animalImage.getImageData() }}</th>
-                    <th><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="img-rounded" width ="200" height="300" tyle=""></th>
+                    <th><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="200" height="300" tyle=""></th>
                 {% endfor %}
                 </tr>
             </tbody>
         </table>
 
-    <a href="{{ path('app_admin_animal_index') }}">Retour à la listet</a>
+    <a href="{{ path('app_admin_animal_index') }}"><button class="btn btn-outline-dark">Retour à la liste</button></a>
 
-    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}">Modifier</a>
+    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-dark">Modifier</button></a>
 
     {{ include('admin/animal/_delete_form.html.twig') }}
 {% endblock %}

@@ -23,17 +23,17 @@
                 <td>{{ habitat.description }}</td>
                 <td>{{ habitat.commentaireHabitat }}</td>
                 <td>
-                    <a href="{{ path('app_admin_habitat_show', {'id': habitat.id}) }}">show</a>
-                    <a href="{{ path('app_admin_habitat_edit', {'id': habitat.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_habitat_show', {'id': habitat.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                    <a href="{{ path('app_admin_habitat_edit', {'id': habitat.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_habitat_new') }}">Create new</a>
+    <a href="{{ path('app_admin_habitat_new') }}"><button class="btn btn-outline-dark">Créer nouveau</button></a>
 {% endblock %}

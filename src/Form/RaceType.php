@@ -15,10 +15,10 @@ class RaceType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('animal', EntityType::class, [
+            /*->add('animal', EntityType::class, [
                 'class' => Animal::class,
                 'choice_label' => 'prenom',
-            ])
+            ])*/
         ;
     }
 
