@@ -21,8 +21,8 @@
                 <td>{{ service.nom }}</td>
                 <td>{{ service.description }}</td>
                 <td>
-                    <a href="{{ path('app_admin_service_show', {'id': service.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                    <a href="{{ path('app_admin_service_edit', {'id': service.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    <a href="{{ path('app_admin_zooservice_show', {'id': service.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                    <a href="{{ path('app_admin_zooservice_edit', {'id': service.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_service_new') }}"><button class="btn btn-outline-dark">Créer nouveau</button></a>
+    <a href="{{ path('app_admin_zooservice_new') }}"><button class="btn btn-outline-dark">Créer nouveau</button></a>
 {% endblock %}
