@@ -42,7 +42,7 @@ class ServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_service_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_admin_zooservice_show', methods: ['GET'])]
     public function show(Service $service): Response
     {
         return $this->render('admin/zooservice/show.html.twig', [
