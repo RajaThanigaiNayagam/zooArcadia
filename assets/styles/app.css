@@ -106,12 +106,12 @@ body {
     font-weight: bold;
 	text-align: center;
 }
-.navbar .navbar-nav > .navbaritem > li > a {
+.navbar .navbar-nav > .nav-item  > a {
     color: #105030;   /*118A61;*/
 	/*font-family: 'Rancho-Regular';*/
     font-size: 1.2em;
 }
-.navbar .navbar-nav > .navbaritem > li > a:hover, .navbar .navbar-nav > .navbaritem > li > a:focus {
+.navbar .navbar-nav > .nav-item > a:hover, .navbar .navbar-nav > .nav-item > a:focus {
     color: #10311d;
     background-color: #118A61;
 }
