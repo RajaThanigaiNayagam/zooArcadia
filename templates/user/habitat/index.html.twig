@@ -4,34 +4,48 @@
 
 {% block body %}
     <h1>Habitat des animaux</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Commentaires sur l'habitat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for habitat in habitats %}
-            <tr>
-                <td>{{ habitat.id }}</td>
-                <td>{{ habitat.nom }}</td>
-                <td>{{ habitat.description }}</td>
-                <td>{{ habitat.commentaireHabitat }}</td>
-                <td>
-                    <a href="{{ path('app_user_habitat_show', {'id': habitat.id}) }}">View</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Commentaires sur l'habitat</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for habitat in habitats %}
+                <tr>
+                    <td>{{ habitat.id }}</td>
+                    <td>{{ habitat.nom }}</td>
+                    <td>{{ habitat.description }}</td>
+                    <td>{{ habitat.commentaireHabitat }}</td>
+                    <td>
+                        <a href="{{ path('app_user_habitat_show', {'id': habitat.id}) }}"><button class="btn btn-outline-light">View</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination">
+        {{ knp_pagination_render(habitats) }}
+    </div>
+
 
 {% endblock %}

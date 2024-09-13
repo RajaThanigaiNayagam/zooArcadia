@@ -16,10 +16,18 @@ use Symfony\Component\Routing\Attribute\Route;
 class AvisController extends AbstractController
 {
     #[Route('/', name: 'app_employee_avis_index', methods: ['GET'])]
-    public function index(AvisRepository $avisRepository): Response
+    public function index(AvisRepository $avisRepository, Request $request): Response
     {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $avis = $avisRepository->paginateAvis($page, $limit);
+        $maxPage = ceil( $avis->getTotalItemCount() / $limit );
+
         return $this->render('employee/avis/index.html.twig', [
-            'avis' => $avisRepository->findAll(),
+            'avis' => $avis,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 

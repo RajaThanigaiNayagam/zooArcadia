@@ -1,39 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de rapport des employés{% endblock %}
+{% block title %}Liste de rapport des l'employé{% endblock %}
 
 {% block body %}
-    <h1>Liste de rapport</h1>
+    <h1>Liste de rapport de l'employé</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nourriture</th>
-                <th>Nourriture donnée</th>
-                <th>Quantité</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for rapport_employee in rapport_employees %}
-            <tr>
-                <td>{{ rapport_employee.id }}</td>
-                <td>{{ rapport_employee.nourriture }}</td>
-                <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rapport_employee.quantity }}</td>
-                <td>
-                    <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                    <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nourriture</th>
+                    <th>Nourriture donnée à</th>
+                    <th>Quantité (en gramme)</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rapport_employee in rapport_employees %}
+                <tr>
+                    <td>{{ rapport_employee.id }}</td>
+                    <td>{{ rapport_employee.nourriture }}</td>
+                    <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ rapport_employee.quantity }}</td>
+                    <td>
+                        <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination">
+        {{ knp_pagination_render(rapport_employees) }}
+    </div>
+
 
     <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
 {% endblock %}

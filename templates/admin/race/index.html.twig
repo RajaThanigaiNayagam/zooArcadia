@@ -1,35 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Race index{% endblock %}
+{% block title %}Race d'animaux{% endblock %}
 
 {% block body %}
-    <h1>Race index</h1>
+    <h1>Race d'animaux</h1>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for race in races %}
-            <tr>
-                <td>{{ race.id }}</td>
-                <td>{{ race.label }}</td>
-                <td>
-                    <a href="{{ path('app_admin_race_show', {'id': race.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                    <a href="{{ path('app_admin_race_edit', {'id': race.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Label</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for race in races %}
+                <tr>
+                    <td>{{ race.id }}</td>
+                    <td>{{ race.label }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_race_show', {'id': race.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_admin_race_edit', {'id': race.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination">
+        {{ knp_pagination_render(races) }}
+    </div>
+
 
     <a href="{{ path('app_admin_race_new') }}"><button class="btn btn-outline-dark">Créer nouveau</button></a>
 {% endblock %}

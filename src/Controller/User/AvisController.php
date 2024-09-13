@@ -15,10 +15,19 @@ use Symfony\Component\Routing\Attribute\Route;
 class AvisController extends AbstractController
 {
     #[Route('/', name: 'app_user_avis_index', methods: ['GET'])]
-    public function index(AvisRepository $avisRepository): Response
+    public function index(AvisRepository $avisRepository, Request $request): Response
     {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $avis = $avisRepository->paginateAvis($page, $limit);
+        $maxPage = ceil( $avis->getTotalItemCount() / $limit );
+        
         return $this->render('user/avis/index.html.twig', [
-            'avis' => $avisRepository->findAll(),
+            'avis' => $avis,
+            'maxPage' => $maxPage,
+            'page' => $page,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -39,6 +48,7 @@ class AvisController extends AbstractController
         return $this->render('user/avis/new.html.twig', [
             'avi' => $avi,
             'form' => $form,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -47,6 +57,7 @@ class AvisController extends AbstractController
     {
         return $this->render('user/avis/show.html.twig', [
             'avi' => $avi,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -65,6 +76,7 @@ class AvisController extends AbstractController
         return $this->render('user/avis/edit.html.twig', [
             'avi' => $avi,
             'form' => $form,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 }

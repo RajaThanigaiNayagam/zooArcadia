@@ -60,6 +60,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 

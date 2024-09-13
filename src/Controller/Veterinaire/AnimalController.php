@@ -15,10 +15,18 @@ use Symfony\Component\Routing\Attribute\Route;
 class AnimalController extends AbstractController
 {
     #[Route('/', name: 'app_veterinaire_animal_index', methods: ['GET'])]
-    public function index(AnimalRepository $animalRepository): Response
+    public function index(AnimalRepository $animalRepository, Request $request): Response
     {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $animal = $animalRepository->paginateAnimal($page, $limit);
+        $maxPage = ceil( $animal->getTotalItemCount() / $limit );
+        
         return $this->render('veterinaire/animal/index.html.twig', [
-            'animals' => $animalRepository->findAll(),
+            'animals' => $animal,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 

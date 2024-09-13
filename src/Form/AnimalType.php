@@ -19,10 +19,14 @@ class AnimalType extends AbstractType
         $builder
             ->add('prenom')
             ->add('etat')
-            ->add('race', EntityType::class, [
+            ->add('race-animal', null, [
+                "label" => "Ajouter la race d\'animal",
+                "mapped" => false,
+            ])
+            /*->add('race', EntityType::class, [
                 'class' => Race::class,
                 'choice_label' => 'label',
-            ])
+            ])*/
             ->add('habitat', EntityType::class, [
                 'class' => Habitat::class,
                 'choice_label' => 'nom',

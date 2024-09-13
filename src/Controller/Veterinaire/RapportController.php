@@ -15,10 +15,20 @@ use Symfony\Component\Routing\Attribute\Route;
 class RapportController extends AbstractController
 {
     #[Route('/', name: 'app_veterinaire_rapport_index', methods: ['GET'])]
-    public function index(RapportVeterinaireRepository $rapportVeterinaireRepository): Response
+    public function index(RapportVeterinaireRepository $rapportVeterinaireRepository, Request $request): Response
     {
+        $ActualUser = $this->getUser()->getId() ;
+
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $rapportveterinaire = $rapportVeterinaireRepository->paginateRapportDeVeterinaire($page, $limit, $ActualUser);
+        $maxPage = ceil( $rapportveterinaire->getTotalItemCount() / $limit );
+        
         return $this->render('veterinaire/rapport/index.html.twig', [
-            'rapport_veterinaires' => $rapportVeterinaireRepository->findAll(),
+            'rapport_veterinaires' => $rapportVeterinaire,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 

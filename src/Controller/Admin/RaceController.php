@@ -15,10 +15,19 @@ use Symfony\Component\Routing\Attribute\Route;
 class RaceController extends AbstractController
 {
     #[Route('/', name: 'app_admin_race_index', methods: ['GET'])]
-    public function index(RaceRepository $raceRepository): Response
+    public function index(RaceRepository $raceRepository, Request $request): Response
     {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $race = $raceRepository->paginateRace($page, $limit);
+        $maxPage = ceil( $race->getTotalItemCount() / $limit );
+
         return $this->render('admin/race/index.html.twig', [
-            'races' => $raceRepository->findAll(),
+            'races' => $race,
+            'maxPage' => $maxPage,
+            'page' => $page,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 

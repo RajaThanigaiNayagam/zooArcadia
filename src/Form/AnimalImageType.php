@@ -17,7 +17,7 @@ class AnimalImageType extends AbstractType
             ->add('image_data')
             ->add('animal', EntityType::class, [
                 'class' => Animal::class,
-                'choice_label' => 'id',
+                'choice_label' => 'prenom',
             ])
         ;
     }

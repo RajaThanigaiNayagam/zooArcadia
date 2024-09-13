@@ -1,40 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AnimalImage index{% endblock %}
+{% block title %}Liste des animaux de notre zoo{% endblock %}
 
 {% block body %}
-    <h1>AnimalImage index</h1>
+    <h1>Liste des animaux de notre zoo</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
+    
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Animal</th>
+                    <th>Image_data</th>
+                    <th>image</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for animal_image in animal_images %}
+                <tr>
+                    <td>{{ animal_image.getAnimal() }}</td>
+                    <td>{{ animal_image.imageData }}</td>
+                    <td>
+                        <img src="{{ asset( animal_image.imageData ) }}" alt="" class="img-rounded" width ="100" height="100" tyle="">
+                    </td>
+                    <td>
+                        <a href="{{ path('app_admin_animal_image_show', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination">
+        {{ knp_pagination_render(animal_images) }}
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Image_data</th>
-                <th>image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for animal_image in animal_images %}
-            <tr>
-                <td>{{ animal_image.id }}</td>
-                <td>{{ animal_image.imageData }}</td>
-                <td>
-                    <img src="{{ asset( animal_image.imageData ) }}" alt="" class="img-rounded" width ="100" height="100" tyle="">
-                </td>
-                <td>
-                    <a href="{{ path('app_admin_animal_image_show', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_admin_animal_image_new') }}"><button class="btn btn-outline-dark">Créer nouveau</button></a>
+    <a href="{{ path('app_admin_animal_image_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
     
 {% endblock %}

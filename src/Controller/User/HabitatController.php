@@ -15,10 +15,18 @@ use Symfony\Component\Routing\Attribute\Route;
 class HabitatController extends AbstractController
 {
     #[Route('/', name: 'app_user_habitat_index', methods: ['GET'])]
-    public function index(HabitatRepository $habitatRepository): Response
+    public function index(HabitatRepository $habitatRepository, Request $request): Response
     {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $habitat = $habitatRepository->paginateHabitat($page, $limit);
+        $maxPage = ceil( $habitat->getTotalItemCount() / $limit );
+        
         return $this->render('user/habitat/index.html.twig', [
-            'habitats' => $habitatRepository->findAll(),
+            'habitats' => $habitat,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 
@@ -27,6 +35,7 @@ class HabitatController extends AbstractController
     {
         return $this->render('user/habitat/show.html.twig', [
             'habitat' => $habitat,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 }

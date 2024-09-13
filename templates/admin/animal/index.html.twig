@@ -4,34 +4,47 @@
 
 {% block body %}
     <h1>Les animaux de notre zoo</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
+    
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Prenom</th>
+                    <th>Etat</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for animal in animals %}
+                <tr>
+                    <td>{{ animal.id }}</td>
+                    <td>{{ animal.prenom }}</td>
+                    <td>{{ animal.etat }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination">
+        {{ knp_pagination_render(animals) }}
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Prenom</th>
-                <th>Etat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for animal in animals %}
-            <tr>
-                <td>{{ animal.id }}</td>
-                <td>{{ animal.prenom }}</td>
-                <td>{{ animal.etat }}</td>
-                <td>
-                    <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_admin_animal_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
+    <a href="{{ path('app_admin_animal_new') }}"><button class="btn btn-outline-light my-3">Créer un nouvel animal</button></a>
 {% endblock %}

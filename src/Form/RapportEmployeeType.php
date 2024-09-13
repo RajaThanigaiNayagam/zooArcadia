@@ -16,9 +16,9 @@ class RapportEmployeeType extends AbstractType
     {
         $builder
             ->add('nourriture')
-            ->add('createdAt', null, [
+            /*->add('createdAt', null, [
                 'widget' => 'single_text',
-            ])
+            ])*/
             ->add('quantity')
             /*->add('user', EntityType::class, [
                 'class' => User::class,
@@ -26,7 +26,7 @@ class RapportEmployeeType extends AbstractType
             ])*/
             ->add('animal', EntityType::class, [
                 'class' => Animal::class,
-                'choice_label' => 'id',
+                'choice_label' => 'prenom',
             ])
         ;
     }

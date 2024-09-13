@@ -5,26 +5,28 @@
 {% block body %}
     <h1>Habitat des animaux</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ habitat.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ habitat.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ habitat.description }}</td>
-            </tr>
-            <tr>
-                <th>Commentaires sur l'habitat</th>
-                <td>{{ habitat.commentaireHabitat }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ habitat.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ habitat.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ habitat.description }}</td>
+                </tr>
+                <tr>
+                    <th>Commentaires sur l'habitat</th>
+                    <td>{{ habitat.commentaireHabitat }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('app_user_habitat_index') }}">Retour à la liste</a>
+    <a href="{{ path('app_user_habitat_index') }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
 {% endblock %}

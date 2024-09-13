@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Rédigez votre avis</h1>
 
-    {{ include('user/avis/_form.html.twig') }}
+    <div class="datatable">
+        {{ include('user/avis/_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('app_home') }}">Retour à la liste</a>
+    <a href="{{ path('app_home') }}"><button class="btn btn-outline-light my-3">Retour à l'accueil</button></a>
 {% endblock %}

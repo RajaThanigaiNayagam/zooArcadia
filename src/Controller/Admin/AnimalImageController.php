@@ -15,11 +15,19 @@ use Symfony\Component\Routing\Attribute\Route;
 class AnimalImageController extends AbstractController
 {
     #[Route('/index', name: 'app_admin_animal_image_index', methods: ['GET'])]
-    public function index(AnimalImageRepository $animalImageRepository): Response
+    public function index(AnimalImageRepository $animalImageRepository, Request $request): Response
     {
-        //dd($animalImageRepository);
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $animalImage = $animalImageRepository->paginateAnimalImage($page, $limit);
+        $maxPage = ceil( $animalImage->getTotalItemCount() / $limit );
+
         return $this->render('admin/animal_image/index.html.twig', [
-            'animal_images' => $animalImageRepository->findAll(),
+            'animal_images' => $animalImage,
+            'maxPage' => $maxPage,
+            'page' => $page,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
     
@@ -40,6 +48,7 @@ class AnimalImageController extends AbstractController
         return $this->render('admin/animal_image/new.html.twig', [
             'animal_image' => $animalImage,
             'form' => $form,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -50,6 +59,7 @@ class AnimalImageController extends AbstractController
         return $this->render('admin/animal_image/show.html.twig', [
             'animal_image' => $animalImage,
             'animal' => $animal,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -68,6 +78,7 @@ class AnimalImageController extends AbstractController
         return $this->render('admin/animal_image/edit.html.twig', [
             'animal_image' => $animalImage,
             'form' => $form,
+            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 

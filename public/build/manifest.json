@@ -1,5 +1,7 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
-  "build/runtime.js": "/build/runtime.js"
+  "build/runtime.js": "/build/runtime.js",
+  "build/images/1.jpg": "/build/images/1.84626f69.jpg",
+  "build/images/zoo_logo.jpg": "/build/images/zoo_logo.cba1f5f8.jpg"
 }

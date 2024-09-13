@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,24 +23,38 @@
         {% include 'partials/navbar.html.twig' %}
             
 
+    
+    <header class="header">
+    <h1>Page d'accueil de Personnel de ZOO ARCADIA seulement.</h1> 
         {% if app.user %}
-            <div class="container my-2 mb-4">
+            <div class="flash-message my-2 mb-4">
                 Vous êtes connecté en tant que <b>{{ app.user.userIdentifier }}</b>, et son rôle est 
                 {% for role in app.user.roles %}
                     <b>{{ role }}</b>
                 {% endfor %}
             </div>
         {% else %}
-            <div class="container my-2 mb-4">
+            <div class="flash-message my-2 mb-4">
                 <b>Vous n'êtes pas connecté</b>
             </div>
         {% endif %}
 
 
-        <div class="container my-4">
+        <div class="flash-message my-4">
             {% include 'partials/flash.html.twig' %}
             {% block body %}{% endblock %}
         </div>
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="header-logo"><img src="image/zoo logo.jpg" alt="logo"></a>
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="button" onclick="window.location.href='/home'" class="btn btn-outline-light btn-lg"><em></em></button>
+            </div>
+        </div>
+    </header>
+
 
         <div class="clearfix"></div>
     </body>

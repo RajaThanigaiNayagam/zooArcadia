@@ -1,38 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Avis index{% endblock %}
+{% block title %}Liste des avis visiteur{% endblock %}
 
 {% block body %}
-    <h1>Avis index</h1>
+    <h1>Liste des avis visiteurs</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
+    
+    <div class="datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Pseudo</th>
+                    <th>Commentaire</th>
+                    <th>IsVisible</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for avi in avis %}
+                <tr>
+                    <td>{{ avi.id }}</td>
+                    <td>{{ avi.pseudo }}</td>
+                    <td>{{ avi.commentaire }}</td>
+                    <td>{{ avi.isVisible ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}">View</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        {{ knp_pagination_render(avis) }}
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Pseudo</th>
-                <th>Commentaire</th>
-                <th>IsVisible</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for avi in avis %}
-            <tr>
-                <td>{{ avi.id }}</td>
-                <td>{{ avi.pseudo }}</td>
-                <td>{{ avi.commentaire }}</td>
-                <td>{{ avi.isVisible ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}">View</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_employee_avis_new') }}">Créer nouveau</a>
+    <a href="{{ path('app_employee_avis_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
 {% endblock %}

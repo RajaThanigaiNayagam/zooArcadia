@@ -5,16 +5,30 @@ namespace App\Repository;
 use App\Entity\Animal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Animal>
  */
 class AnimalRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private PaginatorInterface $paginator)
     {
         parent::__construct($registry, Animal::class);
     }
+
+        /**
+         * @return Animal[] Returns an array of Animal objects
+         */
+        public function paginateAnimal(int $page, int $limit): PaginationInterface
+        {
+            return $this->paginator->paginate(
+                $this->createQueryBuilder('a'),
+                $page,
+                $limit
+            );
+        }
 
     //    /**
     //     * @return Animal[] Returns an array of Animal objects

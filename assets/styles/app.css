@@ -28,45 +28,90 @@ body {
     background-color: #118A61;
 }
 
+.container-fluid {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .navbar-brand {
+    float: left;
     text-decoration: none;
 	color:#105030;
-	font-size: 1.5em;
-    font-family: 'Rancho-Regular';
+    font-family: 'Petit Formal Script', cursive;
+    font-size: 40px;
+    font-weight: bold;
     text-transform: capitalize;
     letter-spacing: 2px;
-	line-height: .5em;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .navbar-brand-div {
-    float: center;
-	margin-top: 0.8;
-	margin-left: 0.8;
+    float: left;
+    display: inline-block;
 }
 
-.container-fluid .navbar-brand-div > a:hover, .container-fluid .navbar-brand-div > a:focus {
+.logo{
+    background-image:url(../image/zoo_logo.jpg);
+	height:8.5vh;
+	width:10vh;
+    display: inline-block;
+	background-size:cover;
+    float: top;
+}
+
+.header-logo{
+    background-image:url(../image/zoo_logo.jpg);
+	height:25.5vh;
+	width:30vh;
+	background-size:cover;
+    float: top;
+}
+
+.brand{
+    float: top;
+    display: inline-block;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.container-fluid .navbar-brand-div > a:hover, .container-fluid .navbar-brand-div > a:focus, .authentification > a:hover, .authentification > a:focus {
     background-color: #118A61;
 }
 
 .navbar, .navbar .navbar-brand, .navbar .navbar-nav {
     /*background-color: #5ab645;*/
 }
+.collapse {
+    text-align: center;
+    margin: 0;
+}
 
 .navbar-nav {
-    float: right;
+    float: left;
     margin: 0;
-	margin-left: 5.8em;
+	margin-left: 5em;
+}
+
+.collapse{
+    font-weight: bold;
+	text-align: center;
 }
 
 .authentification {
-	margin-left: 0.8em;
+	margin: auto;
+    font-size: 1.2em;
+    font-weight: bold;
+	text-align: center;
 }
-.navbar .navbar-nav > li > a {
+.navbar .navbar-nav > .navbaritem > li > a {
     color: #105030;   /*118A61;*/
 	/*font-family: 'Rancho-Regular';*/
     font-size: 1.2em;
 }
-.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+.navbar .navbar-nav > .navbaritem > li > a:hover, .navbar .navbar-nav > .navbaritem > li > a:focus {
     color: #10311d;
     background-color: #118A61;
 }
@@ -82,14 +127,49 @@ body {
 
 h1 {
     font-size: 2em;
-    color: #10311d;
-    font-family: 'Rancho-Regular'
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
 }
-.container {
+
+.flash-message {
     font-size: 1em;
-    color: #10311d;
-    font-family: 'Rancho-Regular'
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
 }
+
+.header
+{
+	background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/zoo.jpg);
+	height:80vh;
+	background-position:center;
+	background-size:cover;
+}
+
+.table, .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 15px!important;
+	text-align : center;
+}
+  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    font-size: 0.9em;
+    color: #10311d;
+    border-top: none !important;
+}
+
+.datatable{
+    margin: auto;
+    width: 75%;
+	text-align : center;
+}
+
+.pagination{
+    margin: auto;
+    width: 80%;
+	text-align : center;
+}
+
+
 
 
 
@@ -99,7 +179,7 @@ h1 {
         display: block;
         padding: 10px 10px;
     }
-    .navbar-brand h1 a {
+    .navbar-brand-div h1 a {
         font-size: 1em;
     }
     .navbar .navbar-nav > li > a {
@@ -108,4 +188,54 @@ h1 {
     h1 {
         font-size: 1em;
     }
+    
+    .logo{
+        background-image:url(../image/zoo_logo.jpg);
+        height:8vh;
+        width:9vh;
+        display: inline-block;
+        background-size:cover;
+        float: top;
+    }
+
+    .navbar-brand {
+        text-decoration: none;
+        color:#105030;
+        /*font-size: 1.5em;
+        font-family: 'Rancho-Regular';*/
+        font-family: 'Petit Formal Script', cursive;
+        font-size: 30px;
+        font-weight: bold;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+
+    @media (max-width:409px){
+        .logo{
+            background-image:url(../image/zoo_logo.jpg);
+            height:7vh;
+            width:8vh;
+            display: inline-block;
+            background-size:cover;
+            float: top;
+        }
+
+        .navbar-brand {
+            text-decoration: none;
+            color:#105030;
+            /*font-size: 1.5em;
+            font-family: 'Rancho-Regular';*/
+            font-family: 'Petit Formal Script', cursive;
+            font-size: 25px;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
 }

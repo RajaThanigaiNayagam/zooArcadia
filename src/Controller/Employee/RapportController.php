@@ -16,12 +16,20 @@ use Symfony\Component\Routing\Attribute\Route;
 class RapportController extends AbstractController
 {
     #[Route('/', name: 'app_employee_rapport_index', methods: ['GET'])]
-    public function index(RapportEmployeeRepository $rapportEmployeeRepository): Response
+    public function index(RapportEmployeeRepository $rapportEmployeeRepository, Request $request): Response
     {
         $ActualUser = $this->getUser()->getId() ;
+
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUser);
+        $maxPage = ceil( $rapportEmployee->getTotalItemCount() / $limit );
         
         return $this->render('employee/rapport/index.html.twig', [
-            'rapport_employees' => $rapportEmployeeRepository->findByUser($ActualUser) ,
+            'rapport_employees' => $rapportEmployee,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 
@@ -35,6 +43,8 @@ class RapportController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $ActualUser = $this->getUser();
             $rapportEmployee->setUser($ActualUser);
+            $datetime = (new \DateTimeImmutable('Europe/Paris'));
+            $rapportEmployee->setCreatedAt($datetime);
 
             $entityManager->persist($rapportEmployee);
             $entityManager->flush();

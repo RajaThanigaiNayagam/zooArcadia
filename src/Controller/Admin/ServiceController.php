@@ -15,10 +15,18 @@ use Symfony\Component\Routing\Attribute\Route;
 class ServiceController extends AbstractController
 {
     #[Route('/', name: 'app_admin_zooservice_index', methods: ['GET'])]
-    public function index(ServiceRepository $serviceRepository): Response
+    public function index(ServiceRepository $serviceRepository, Request $request): Response
     {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $service = $serviceRepository->paginateService($page, $limit);
+        $maxPage = ceil( $service->getTotalItemCount() / $limit );
+        
         return $this->render('admin/zooservice/index.html.twig', [
-            'services' => $serviceRepository->findAll(),
+            'services' => $service,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 
