@@ -46,6 +46,9 @@ class Animal
     #[ORM\OneToMany(targetEntity: AnimalImage::class, mappedBy: 'animal', orphanRemoval: true)]
     private Collection $animalImages;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nb_clique = null;
+
     public function __construct()
     {
         $this->rapportEmployees = new ArrayCollection();
@@ -199,5 +202,17 @@ class Animal
     public function __toString()
     {
         return $this->prenom;
+    }
+
+    public function getNbClique(): ?int
+    {
+        return $this->nb_clique;
+    }
+
+    public function setNbClique(?int $nb_clique): static
+    {
+        $this->nb_clique = $nb_clique;
+
+        return $this;
     }
 }

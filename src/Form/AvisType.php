@@ -14,7 +14,6 @@ class AvisType extends AbstractType
         $builder
             ->add('pseudo')
             ->add('commentaire')
-            ->add('isVisible')
         ;
     }
 
