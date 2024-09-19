@@ -4,40 +4,51 @@
 
 {% block body %}
     <h1>Liste des rapport Veterinaire</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Detail</th>
-                <th>Date création</th>
-                <th>Etat</th>
-                <th>Nourriture</th>
-                <th>Grammage de nourriture</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for rapport_veterinaire in rapport_veterinaires %}
-            <tr>
-                <td>{{ rapport_veterinaire.id }}</td>
-                <td>{{ rapport_veterinaire.detail }}</td>
-                <td>{{ rapport_veterinaire.createdAt ? rapport_veterinaire.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rapport_veterinaire.status }}</td>
-                <td>{{ rapport_veterinaire.food }}</td>
-                <td>{{ rapport_veterinaire.foodgrammage }}</td>
-                <td>
-                    <a href="{{ path('app_veterinaire_rapport_show', {'id': rapport_veterinaire.id}) }}"><button class="btn btn-outline-dark">View</button></a>
-                    <a href="{{ path('app_veterinaire_rapport_edit', {'id': rapport_veterinaire.id}) }}"><button class="btn btn-outline-dark"></button></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Detail</th>
+                    <th>Date création</th>
+                    <th>Etat</th>
+                    <th>Nourriture</th>
+                    <th>Grammage de nourriture</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rapport_veterinaire in rapport_veterinaires %}
+                <tr>
+                    <td>{{ rapport_veterinaire.detail }}</td>
+                    <td>{{ rapport_veterinaire.createdAt ? rapport_veterinaire.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ rapport_veterinaire.status }}</td>
+                    <td>{{ rapport_veterinaire.food }}</td>
+                    <td>{{ rapport_veterinaire.foodgrammage }}</td>
+                    <td>
+                        <a href="{{ path('app_veterinaire_rapport_show', {'id': rapport_veterinaire.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_veterinaire_rapport_edit', {'id': rapport_veterinaire.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="pagination">
+        {{ knp_pagination_render(rapport_veterinaires) }}
+    </div>
 
-    <a href="{{ path('app_veterinaire_rapport_new') }}"><button class="btn btn-outline-dark my-3">Créer nouveau</button></a>
+    <a href="{{ path('app_veterinaire_rapport_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
 {% endblock %}

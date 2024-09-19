@@ -5,42 +5,44 @@
 {% block body %}
     <h1>Animal</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ animal.id }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ animal.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ animal.etat }}</td>
-            <tr>
-                <th>Race</th><td>{{ races}}</td>
-                {% for race in races %}
-                    <td>{{ race.id }}</td>
-                {% endfor %}
-            </tr>
-        </tbody>
-    </table>
+    <div class="datatable">
         <table class="table">
             <tbody>
-                <h3>Image des animal</h3>
                 <tr>
-                {% for animalImage in animal.animalImages %}
-                    <th>{{ animalImage.getImageData() }}</th>
-                    <th><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="200" height="300" tyle=""></th>
-                {% endfor %}
+                    <th>Id</th>
+                    <td>{{ animal.id }}</td>
+                </tr>
+                <tr>
+                    <th>Prenom</th>
+                    <td>{{ animal.prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Etat</th>
+                    <td>{{ animal.etat }}</td>
+                <tr>
+                    <th>Race</th><td>{{ races}}</td>
+                    {% for race in races %}
+                        <td>{{ race.id }}</td>
+                    {% endfor %}
                 </tr>
             </tbody>
         </table>
+            <table class="table">
+                <tbody>
+                    <h3>Image des animal</h3>
+                    <tr>
+                    {% for animalImage in animal.animalImages %}
+                        <th>{{ animalImage.getImageData() }}</th>
+                        <th><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="200" height="300" tyle=""></th>
+                    {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+    </div>    
 
-    <a href="{{ path('app_admin_animal_index') }}"><button class="btn btn-outline-dark">Retour à la liste</button></a>
+    <a href="{{ path('app_admin_animal_index') }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
 
-    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-dark">Modifier</button></a>
+    <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-light my-3">Modifier</button></a>
 
     {{ include('admin/animal/_delete_form.html.twig') }}
 {% endblock %}

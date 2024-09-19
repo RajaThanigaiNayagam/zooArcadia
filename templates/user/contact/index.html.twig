@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de contace{% endblock %}
+
+{% block body %}
+    <h1>Page de contact</h1>
+    
+    <div class="datatable">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-outline-light my-3">{{ button_label|default('Soumettre') }}</button>
+        {{ form_end(form) }}
+    </div>
+
+    
+{% endblock %}

@@ -21,6 +21,9 @@ class AnimalImage
     #[ORM\JoinColumn(nullable: false)]
     private ?Animal $animal = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nb_clique = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,5 +56,17 @@ class AnimalImage
     public function __toString()
     {
         return $this->image_data;
+    }
+
+    public function getNbClique(): ?int
+    {
+        return $this->nb_clique;
+    }
+
+    public function setNbClique(?int $nb_clique): static
+    {
+        $this->nb_clique = $nb_clique;
+
+        return $this;
     }
 }

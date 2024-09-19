@@ -40,6 +40,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_user_avis_new') }}">Donnez votre avis</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_user_contact') }}">Contactez-nous</a>
+                            </li>
                             {% if roleadmin %}
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,6 +55,7 @@
                                         <li><a class="dropdown-item" href="{{ path('app_admin_animal_image_index') }}">Images d'animaux</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_race_index') }}">Race d'animaux</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_zooservice_index') }}">Services</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_horaire_index') }}">Horaire</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_register') }}">Inscription</a></li>
                                     </ul>

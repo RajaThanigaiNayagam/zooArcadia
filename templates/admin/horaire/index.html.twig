@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Heure d'ouverture du zoo{% endblock %}
+
+{% block body %}
+    <h1>Horaire du zoo</h1>
+
+    <div class="datatable">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Jour</th>
+                    <th>Heure d'ouverture</th>
+                    <th>Heure de fermeture</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for horaire in horaires %}
+                <tr>
+                    <td>{{ horaire.day }}</td>
+                    <td>{{ horaire.openTime ? horaire.openTime|date('H:i:s') : '' }}</td>
+                    <td>{{ horaire.closeTime ? horaire.closeTime|date('H:i:s') :  '' }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_horaire_edit', {'id': horaire.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('app_admin_horaire_new') }}"><button class="btn btn-outline-light">Créer un nouvel horaire</button></a>
+{% endblock %}

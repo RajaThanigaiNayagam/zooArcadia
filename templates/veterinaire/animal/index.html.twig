@@ -1,37 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animal index{% endblock %}
+{% block title %}Liste des animal{% endblock %}
 
 {% block body %}
-    <h1>Animal index</h1>
+    <h1>Liste des animals</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Prenom</th>
-                <th>Etat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for animal in animals %}
-            <tr>
-                <td>{{ animal.id }}</td>
-                <td>{{ animal.prenom }}</td>
-                <td>{{ animal.etat }}</td>
-                <td>
-                    <a href="{{ path('app_veterinaire_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-dark">View</button></a>
-                    <a href="{{ path('app_veterinaire_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-dark">Modifier</button></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prenom</th>
+                    <th>Etat</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for animal in animals %}
+                <tr>
+                    <td>{{ animal.prenom }}</td>
+                    <td>{{ animal.etat }}</td>
+                    <td>
+                        <a href="{{ path('app_veterinaire_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_veterinaire_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="pagination">
+        {{ knp_pagination_render(animals) }}
+    </div>
 
-    <a href="{{ path('app_veterinaire_animal_new') }}">Create new</a>
+    <a href="{{ path('app_veterinaire_animal_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
 {% endblock %}

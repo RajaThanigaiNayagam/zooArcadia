@@ -26,7 +26,7 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $is_read = null;
 
     public function getId(): ?int

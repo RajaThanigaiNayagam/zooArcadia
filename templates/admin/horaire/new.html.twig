@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Horaire{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle heure</h1>
+
+    <div class="datatable">
+        {{ include('admin/horaire/_form.html.twig') }}
+    </div>
+
+    <a href="{{ path('app_admin_horaire_index') }}"><button class="btn btn-outline-light">Retour à la liste</button></a>
+{% endblock %}

@@ -26,7 +26,7 @@ class RapportController extends AbstractController
         $maxPage = ceil( $rapportveterinaire->getTotalItemCount() / $limit );
         
         return $this->render('veterinaire/rapport/index.html.twig', [
-            'rapport_veterinaires' => $rapportVeterinaire,
+            'rapport_veterinaires' => $rapportveterinaire,
             'maxPage' => $maxPage,
             'page' => $page,
         ]);
@@ -40,6 +40,11 @@ class RapportController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ActualUser = $this->getUser();
+            $rapportVeterinaire->setUser($ActualUser);
+            $datetime = (new \DateTimeImmutable('Europe/Paris'));
+            $rapportVeterinaire->setCreatedAt($datetime);
+
             $entityManager->persist($rapportVeterinaire);
             $entityManager->flush();
 

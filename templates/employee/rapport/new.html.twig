@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Créer un nouveau rapport par employé</h1>
 
-    {{ include('employee/rapport/_form.html.twig') }}
-
-    <a href="{{ path('app_employee_rapport_index') }}"><button class="btn btn-outline-dark my-3">Retour à la liste</button></a>
+    <div class="datatable">
+        {{ include('employee/rapport/_form.html.twig') }}
+    </div>
+    
+    <a href="{{ path('app_employee_rapport_index') }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
 {% endblock %}

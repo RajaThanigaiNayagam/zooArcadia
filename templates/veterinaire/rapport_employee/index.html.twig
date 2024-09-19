@@ -1,39 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RapportEmployee index{% endblock %}
+{% block title %}Liste de rapport employee{% endblock %}
 
 {% block body %}
-    <h1>RapportEmployee index</h1>
+    <h1>Liste de rapport employee</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div><br>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nourriture</th>
-                <th>CreatedAt</th>
-                <th>Quantité</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for rapport_employee in rapport_employees %}
-            <tr>
-                <td>{{ rapport_employee.id }}</td>
-                <td>{{ rapport_employee.nourriture }}</td>
-                <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rapport_employee.quantité }}</td>
-                <td>
-                    <a href="{{ path('app_veterinaire_rapport_employee_show', {'id': rapport_employee.id}) }}">show</a>
-                    <a href="{{ path('app_veterinaire_rapport_employee_edit', {'id': rapport_employee.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nourriture</th>
+                    <th>CreatedAt</th>
+                    <th>Quantité</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rapport_employee in rapport_employees %}
+                <tr>
+                    <td>{{ rapport_employee.nourriture }}</td>
+                    <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ rapport_employee.quantité }}</td>
+                    <td>
+                        <a href="{{ path('app_veterinaire_rapport_employee_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success my-3">View</button></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination">
+        {{ knp_pagination_render(rapport_employees) }}
+    </div>
 
-    <a href="{{ path('app_veterinaire_rapport_employee_new') }}">Create new</a>
+    <a href="{{ path('app_veterinaire_rapport_employee_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
 {% endblock %}

@@ -5,30 +5,32 @@
 {% block body %}
     <h1>Habitat</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ habitat.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ habitat.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ habitat.description }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire_habitat</th>
-                <td>{{ habitat.commentaireHabitat }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ habitat.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ habitat.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ habitat.description }}</td>
+                </tr>
+                <tr>
+                    <th>Commentaire_habitat</th>
+                    <td>{{ habitat.commentaireHabitat }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('app_admin_habitat_index') }}"><button class="btn btn-outline-dark">Retour à la liste</button></a>
+    <a href="{{ path('app_admin_habitat_index') }}"><button class="btn btn-outline-light">Retour à la liste</button></a>
 
-    <a href="{{ path('app_admin_habitat_edit', {'id': habitat.id}) }}"><button class="btn btn-outline-dark">Modifier</button></a>
+    <a href="{{ path('app_admin_habitat_edit', {'id': habitat.id}) }}"><button class="btn btn-outline-light">Modifier</button></a>
 
     {{ include('admin/habitat/_delete_form.html.twig') }}
 {% endblock %}

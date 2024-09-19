@@ -16,19 +16,12 @@ class RapportVeterinaireType extends AbstractType
     {
         $builder
             ->add('detail')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
             ->add('status')
             ->add('food')
             ->add('foodgrammage')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
             ->add('animal', EntityType::class, [
                 'class' => Animal::class,
-                'choice_label' => 'id',
+                'choice_label' => 'prenom',
             ])
         ;
     }

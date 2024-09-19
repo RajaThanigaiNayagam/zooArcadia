@@ -5,34 +5,36 @@
 {% block body %}
     <h1>RapportVeterinaire</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ rapport_veterinaire.id }}</td>
-            </tr>
-            <tr>
-                <th>Detail</th>
-                <td>{{ rapport_veterinaire.detail }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ rapport_veterinaire.createdAt ? rapport_veterinaire.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ rapport_veterinaire.status }}</td>
-            </tr>
-            <tr>
-                <th>Food</th>
-                <td>{{ rapport_veterinaire.food }}</td>
-            </tr>
-            <tr>
-                <th>Foodgrammage</th>
-                <td>{{ rapport_veterinaire.foodgrammage }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ rapport_veterinaire.id }}</td>
+                </tr>
+                <tr>
+                    <th>Detail</th>
+                    <td>{{ rapport_veterinaire.detail }}</td>
+                </tr>
+                <tr>
+                    <th>CreatedAt</th>
+                    <td>{{ rapport_veterinaire.createdAt ? rapport_veterinaire.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ rapport_veterinaire.status }}</td>
+                </tr>
+                <tr>
+                    <th>Food</th>
+                    <td>{{ rapport_veterinaire.food }}</td>
+                </tr>
+                <tr>
+                    <th>Foodgrammage</th>
+                    <td>{{ rapport_veterinaire.foodgrammage }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <a href="{{ path('app_veterinaire_rapport_index') }}"><button class="btn btn-outline-dark my-3">Retour à la liste</button></a>
 

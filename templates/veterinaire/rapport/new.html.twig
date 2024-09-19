@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Créer un nouveau rapport Vétérinaire</h1>
 
-    {{ include('veterinaire/rapport/_form.html.twig') }}
+    <div class="datatable">
+        {{ include('veterinaire/rapport/_form.html.twig') }}
+    </div>
 
     <a href="{{ path('app_veterinaire_rapport_index') }}"><button class="btn btn-outline-dark my-3">Retour à la liste</button></a>
 {% endblock %}

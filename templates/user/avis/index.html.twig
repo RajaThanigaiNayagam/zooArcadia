@@ -31,7 +31,7 @@
                     <td>{{ avi.commentaire }}</td>
                     <td>{{ avi.isVisible ? 'Yes' : 'No' }}</td>
                     <td>
-                        <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}">View</a>
+                        <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
                     </td>
                 </tr>
             {% else %}

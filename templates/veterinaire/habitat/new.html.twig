@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Create new Habitat</h1>
 
-    {{ include('veterinaire/habitat/_form.html.twig') }}
+    <div class="datatable">
+        {{ include('veterinaire/habitat/_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('app_veterinaire_habitat_index') }}"><button class="btn btn-outline-dark my-3">Retour à la liste</button></a>
+    <a href="{{ path('app_veterinaire_habitat_index') }}"><button class="btn btn-outline-lightr my-3">Retour à la liste</button></a>
 {% endblock %}

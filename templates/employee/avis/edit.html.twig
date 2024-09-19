@@ -5,8 +5,10 @@
 {% block body %}
     <h1>Autoriser ou non les avis clients</h1>
 
-    {{ include('employee/avis/_form.html.twig', {'button_label': 'Update'}) }}
-
+    <div class="datatable">
+        {{ include('employee/avis/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+    
     <a href="{{ path('app_employee_avis_index') }}"><button class="btn btn-outline-dark my-3">Retour à la liste</button></a>
 
 {% endblock %}

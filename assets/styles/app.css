@@ -161,6 +161,14 @@ h1 {
     margin: auto;
     width: 75%;
 	text-align : center;
+    font-weight: bold;
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+thead{
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 .pagination{
@@ -168,11 +176,32 @@ h1 {
     width: 80%;
 	text-align : center;
 }
+/* ----------------------------------------------------------- */
+
+
+/* ---------------------tableau d'horaire--------------------- */
+.horaire{
+    width: 80%;
+    margin : auto;
+    display: inline-block; 
+	text-align : left;
+    padding: 5px;
+}
+.horairetable{
+    border: 1px solid white;
+    color :#105030;
+    margin : auto;
+    width: 30%;
+    padding: 5px;
+	text-align : center;
+    font-weight: bold;
+}
+/* ----------------------------------------------------------- */
 
 
 
 
-
+/* --------------------Responsive-ecran 991------------------- */
 @media (max-width:991px){
     .nav > li > a {
         position: relative;
