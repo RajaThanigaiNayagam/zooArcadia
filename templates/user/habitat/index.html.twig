@@ -16,7 +16,6 @@
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Commentaires sur l'habitat</th>
@@ -26,7 +25,6 @@
             <tbody>
             {% for habitat in habitats %}
                 <tr>
-                    <td>{{ habitat.id }}</td>
                     <td>{{ habitat.nom }}</td>
                     <td>{{ habitat.description }}</td>
                     <td>{{ habitat.commentaireHabitat }}</td>
@@ -46,6 +44,5 @@
     <div class="pagination">
         {{ knp_pagination_render(habitats) }}
     </div>
-
 
 {% endblock %}

@@ -125,7 +125,7 @@ body {
     background-color: #118A61
 }
 
-h1 {
+h1, h2 {
     font-size: 2em;
     color: #fff;
     font-family: 'Rancho-Regular';
@@ -141,8 +141,9 @@ h1 {
 
 .header
 {
-	background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/zoo.jpg);
-	height:80vh;
+	/*background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/zoo.jpg);*/
+	background-image:url(../image/zoo.jpg);
+	height:150vh;
 	background-position:center;
 	background-size:cover;
 }
@@ -191,13 +192,74 @@ thead{
     border: 1px solid white;
     color :#105030;
     margin : auto;
-    width: 30%;
+    width: 30em;
     padding: 5px;
 	text-align : center;
     font-weight: bold;
 }
 /* ----------------------------------------------------------- */
 
+
+/* ------------------Habitats and its animals----------------- */
+.datahabitat{
+    margin: auto;
+    width: 80%;
+	text-align : center;
+    font-weight: bold;
+}
+
+.habitatrow{
+	margin: auto;
+    background-color: #118A61;
+    margin: auto;
+	text-align : center;
+    font-weight: bold;
+}
+
+.card {
+	margin: auto;
+    border-radius: 10px;
+	border : 1px solid #392C1E !important;
+    text-align: center;
+}
+
+.card img {
+	margin: auto;
+    text-align: center;
+    width: 10em;
+    height: 10em;
+    border-radius: 10px;
+}
+.card .shadow {
+	margin: auto;
+    width: 10em;
+    height: 10em;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card .card-body img {
+	margin: auto;
+    text-align: center;
+    width: 10em;
+    height: 10em;
+    border-radius: 150px;
+}
+.card-title {
+	margin: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: #105030;
+}
+.card-text {
+	margin: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: #105030;
+}
+/* ----------------------------------------------------------- */
 
 
 

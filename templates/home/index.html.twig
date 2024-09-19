@@ -3,50 +3,95 @@
 {% block title %}Page d'accueille{% endblock %}
 
 {% block body %}
+    <!-- Juste pour verifier le user role
     {% for userrole in userroles %}
         {{ userrole }} &nbsp;&nbsp;  
-    {% endfor %}
-<div class="container"><br>
-    <h1>Horaire du zoo </h1>
-    <section class="horaire">
-        <div class="horairetable">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Jour</th>
-                        <th>Heure d'ouverture</th>
-                        <th>Heure de fermeture</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for horaire in horaires %}
-                    <tr>
-                        <td>{{ horaire.day }}</td>
-                        <td>{{ horaire.openTime ? horaire.openTime|date('H:i:s') : '' }}</td>
-                        <td>{{ horaire.closeTime ? horaire.closeTime|date('H:i:s') :  '' }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">Aucun enregistrement d'horaire trouvé</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section>
-</div>
-
+    {% endfor %}-->
 
     {% if app.user %}
+        <!-- --------------Utilisateur connecté-------------- -->
         {% if roleadmin %}
             <!-- Page d'accueil d'admin -->
-            <div>Page d'accueil d'admin</div>
-            <div>            </div>
+            <div class="datatable">
+                {{ include('home/admin.html.twig') }}
+            </div>
         {% elseif roleveterinaire %}
-            <!-- Page d'accueil d'veterinaire -->  
+            <!-- Page d'accueil d'veterinaire -->
+            <div class="datatable">
+                {{ include('home/employee.html.twig') }}
+            </div>
         {% elseif roleemployee %}
-            <!-- Page d'accueil d'employee -->   
+            <!-- Page d'accueil d'employee -->
+            <div class="datatable">
+                {{ include('home/veterinaire.html.twig') }}
+            </div>
         {% endif %}
+    {% else %}
+        <!-- -------------- ---------------------------------- -->
+        <!-- ------------Utilisateur non connecté ------------ -->
+        <!-- -----------------Horaire de zoo ----------------- -->
+            <h1>Horaire du zoo </h1>
+            <section class="horaire">
+                <div class="horairetable">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Jour</th>
+                                <th>Heure d'ouverture</th>
+                                <th>Heure de fermeture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for horaire in horaires %}
+                            <tr>
+                                <td>{{ horaire.day }}</td>
+                                <td>{{ horaire.openTime ? horaire.openTime|date('H:i:s') : '' }}</td>
+                                <td>{{ horaire.closeTime ? horaire.closeTime|date('H:i:s') :  '' }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Aucun enregistrement d'horaire trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+                
+        <!-- -------------- ---------------------------------- -->
+        <!-- -------------- Habitats des animaux-------------- -->
+        <!-- -------------- ---------------------------------- -->
+        <div class="datahabitat"><br>
+            {% for habitat in habitats %}
+                <div class="row habitatrow">Les animaux de l'habitat  &nbsp;&nbsp;&nbsp;&nbsp;  {{ habitat.nom }}
+                    <div class="row habitatrow">
+                        {% for animals in habitat.getAnimal() %}
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="card shadow">
+                                    {{ animals.prenom() }}
+                                    {% if animals.getAnimalImages|length > 0 %}
+                                        {% for animalimage in animals.getAnimalImages() %}
+                                            <img src="{{ animalimage }}" class="img-fluid">
+                                            <div class="card-body">
+                                                <div class="card-text">{{ animals.etat }}</div>
+                                                <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ animals.prenom }}</h5>
+                                            <div class="card-text">{{ animals.etat }}</div>
+                                            <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
+                                        </div>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div> 
+
     {% endif %}
     
 
