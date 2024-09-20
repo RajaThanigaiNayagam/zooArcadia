@@ -29,6 +29,20 @@ class AnimalImageRepository extends ServiceEntityRepository
                 $limit
             );
         }
+            /**
+             * @return AnimalImage Returns the AnimalImages
+             */
+            public function NbClickAnimal($value): ?AnimalImage
+            {
+                return $this->createQueryBuilder('a')
+                    ->andWhere('a.animal_id = :val')
+                    ->setParameter('val', $value)
+                    ->orderBy('a.id', 'ASC')
+                    ->getQuery()
+                    ->getResult()
+                ;
+            }
+    
         
     //    /**
     //     * @return AnimalImage[] Returns an array of AnimalImage objects

@@ -6,6 +6,7 @@ use App\Entity\Animal;
 use App\Entity\Race;
 use App\Form\AnimalType;
 use App\Form\AnimalEditType;
+use App\Repository\AnimalImageRepository;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class AnimalController extends AbstractController
 {
     #[Route('/', name: 'app_admin_animal_index', methods: ['GET'])]
-    public function index(AnimalRepository $animalRepository, Request $request): Response
+    public function index(AnimalRepository $animalRepository, AnimalImageRepository $animalImageRepository, Request $request): Response
     {
         $page = $request->query->getint('page', 1);
         if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
@@ -29,7 +30,6 @@ class AnimalController extends AbstractController
             'animals' => $animal,
             'maxPage' => $maxPage,
             'page' => $page,
-            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -58,7 +58,6 @@ class AnimalController extends AbstractController
         return $this->render('admin/animal/new.html.twig', [
             'animal' => $animal,
             'form' => $form,
-            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -72,7 +71,6 @@ class AnimalController extends AbstractController
             'animal' => $animal,
             //'animalImages' => $animalImages,
             'races' => $races,
-            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -91,7 +89,6 @@ class AnimalController extends AbstractController
         return $this->render('admin/animal/edit.html.twig', [
             'animal' => $animal,
             'form' => $form,
-            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 

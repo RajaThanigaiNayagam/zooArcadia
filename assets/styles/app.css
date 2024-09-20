@@ -159,6 +159,7 @@ h1, h2 {
 }
 
 .datatable{
+    background-color: white;
     margin: auto;
     width: 75%;
 	text-align : center;
@@ -166,6 +167,24 @@ h1, h2 {
     padding-left: 5em;
     padding-right: 5em;
 }
+
+.datatable-inscription{
+    background-color: white;
+    color: #105030;
+    margin: auto;
+    width: 75%;
+	text-align : center;
+    font-weight: bold;
+    padding-left: 5em;
+    padding-right: 5em;
+}
+form label {   
+    width: 100%;
+    color: #105030;
+    margin: 0;
+	text-align : left;
+}
+
 
 thead{
     font-size: 1.1em;
@@ -223,7 +242,7 @@ thead{
     text-align: center;
 }
 
-.card img {
+.card a img {
 	margin: auto;
     text-align: center;
     width: 10em;

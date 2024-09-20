@@ -53,11 +53,6 @@ class AnimalImage
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->image_data;
-    }
-
     public function getNbClique(): ?int
     {
         return $this->nb_clique;
@@ -69,4 +64,10 @@ class AnimalImage
 
         return $this;
     }
+    
+    public function __toString()
+    {
+        return $this->image_data;
+    }
+
 }

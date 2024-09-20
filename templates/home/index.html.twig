@@ -12,17 +12,17 @@
         <!-- --------------Utilisateur connecté-------------- -->
         {% if roleadmin %}
             <!-- Page d'accueil d'admin -->
-            <div class="datatable">
+            <div>
                 {{ include('home/admin.html.twig') }}
             </div>
         {% elseif roleveterinaire %}
             <!-- Page d'accueil d'veterinaire -->
-            <div class="datatable">
+            <div>
                 {{ include('home/employee.html.twig') }}
             </div>
         {% elseif roleemployee %}
             <!-- Page d'accueil d'employee -->
-            <div class="datatable">
+            <div>
                 {{ include('home/veterinaire.html.twig') }}
             </div>
         {% endif %}
@@ -71,7 +71,7 @@
                                     {{ animals.prenom() }}
                                     {% if animals.getAnimalImages|length > 0 %}
                                         {% for animalimage in animals.getAnimalImages() %}
-                                            <img src="{{ animalimage }}" class="img-fluid">
+                                            <a href="{{ path('app_user_animal_show', {'id': animalimage.id}) }}"><img src="{{ animalimage }}" id="animalclick" class="img-fluid"></a>
                                             <div class="card-body">
                                                 <div class="card-text">{{ animals.etat }}</div>
                                                 <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>

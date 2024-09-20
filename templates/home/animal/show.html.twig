@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animal{% endblock %}
+
+{% block body %}
+    <h1>Animal</h1>
+
+    <div class="datatable">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ animalimages.getAnimal().Id }}</td>
+                </tr>
+                <tr>
+                    <th>Prenom</th>
+                    <td>{{ animalimages.getAnimal().prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Etat</th>
+                    <td>{{ animalimages.getAnimal().etat }}</td>
+                <tr>
+                    <th>Race</th>
+                    <td>{{ animalimages.getAnimal().race}}</td>
+                </tr>
+            </tbody>
+        </table>
+            {#Table pour afficher les image d'animal #}
+            <table class="table">
+                <tbody>
+                    <h3>Image des animal</h3>
+                    <tr>
+                        <th>{{ animalimages.getImageData() }}</th>
+                        <th><img src="{{ asset( animalimages.getImageData() ) }}" alt="" class="rounded" width ="200" height="300" tyle=""></th>
+                    </tr>
+                </tbody>
+            </table>
+    </div>    
+
+    <a href="{{ referer }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
+
+{% endblock %}

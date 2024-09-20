@@ -20,9 +20,9 @@
 
     <img src="{{ asset( animal_image.imageData ) }}" alt="" class="img-rounded" width ="200" height="300" tyle="">
 
-    <a href="{{ path('app_admin_animal_image_index') }}"><button class="btn btn-outline-success">Retour à la liste</button></a>
+    <a href="{{ path('app_admin_animal_image_index') }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
 
-    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+    <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}"><button class="btn btn-outline-light my-3">Modifier</button></a>
 
     {{ include('admin/animal_image/_delete_form.html.twig') }}
 {% endblock %}

@@ -5,7 +5,9 @@
 {% block body %}
     <h1>Ajouter une nouvelle image d'animal</h1>
 
-    {{ include('admin/animal_image/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_animal_image_index') }}"><button class="btn btn-outline-dark">Retour à la liste</button></a>
+    <div class="datatable">
+        {{ include('admin/animal_image/_form.html.twig') }}
+    </div>
+    
+    <a href="{{ path('app_admin_animal_image_index') }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
 {% endblock %}

@@ -19,6 +19,8 @@
                     <th>Id</th>
                     <th>Prenom</th>
                     <th>Etat</th>
+                    <th>Nb vue</th>
+                    <th>Image d'animal</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -28,6 +30,18 @@
                     <td>{{ animal.id }}</td>
                     <td>{{ animal.prenom }}</td>
                     <td>{{ animal.etat }}</td>
+                    <td style="color: blue">
+                        {% set animalclick = 0 %}
+                        {% for animalImage in animal.animalImages %}
+                            {% set animalclick = animalclick + animalImage.getNbClique() %}
+                        {% endfor %}
+                        {{ animalclick }}
+                    </td>
+                    <td>
+                    {% for animalImage in animal.animalImages %}
+                        <img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="100" height="120" tyle="">
+                    {% endfor %}
+                    </td>
                     <td>
                         <a href="{{ path('app_admin_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">View</button></a>
                         <a href="{{ path('app_admin_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
