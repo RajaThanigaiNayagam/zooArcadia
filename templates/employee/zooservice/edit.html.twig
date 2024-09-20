@@ -7,9 +7,9 @@
 
     <div class="datatable">
         {{ include('employee/service/_form.html.twig', {'button_label': 'Update'}) }}
-    </div>
     
-    <a href="{{ path('app_employee_service_index') }}"><button class="btn btn-outline-light my-3">Retour à la liste</button></a>
+    <a href="{{ path('app_employee_service_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
 
     {{ include('employee/service/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

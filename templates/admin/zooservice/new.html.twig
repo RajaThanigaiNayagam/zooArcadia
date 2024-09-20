@@ -4,8 +4,10 @@
 
 {% block body %}
     <h1>Create new Service</h1>
+    <div class="datatable">
 
     {{ include('admin/zooservice/_form.html.twig') }}
 
-    <a href="{{ path('app_admin_zooservice_index') }}"><button class="btn btn-outline-dark">Retour à la liste</button></a>
+    <a href="{{ path('app_admin_zooservice_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
+    </div>
 {% endblock %}

@@ -29,7 +29,7 @@
                     <td>{{ habitat.description }}</td>
                     <td>{{ habitat.commentaireHabitat }}</td>
                     <td>
-                        <a href="{{ path('app_user_habitat_show', {'id': habitat.id}) }}"><button class="btn btn-outline-light">View</button></a>
+                        <a href="{{ path('app_user_habitat_show', {'id': habitat.id}) }}"><button class="btn btn-outline-success">View</button></a>
                     </td>
                 </tr>
             {% else %}
@@ -39,10 +39,9 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
     
-    <div class="pagination">
-        {{ knp_pagination_render(habitats) }}
+        <div class="pagination">
+            {{ knp_pagination_render(habitats) }}
+        </div>
     </div>
-
 {% endblock %}

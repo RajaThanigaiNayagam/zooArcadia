@@ -31,7 +31,7 @@
                     <td>{{ avi.commentaire }}</td>
                     <td>{{ avi.isVisible ? 'Yes' : 'No' }}</td>
                     <td>
-                        <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
+                        <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
                     </td>
                 </tr>
             {% else %}
@@ -41,10 +41,10 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
     <div class="pagination">
         {{ knp_pagination_render(avis) }}
     </div>
 
-    <a href="{{ path('app_employee_avis_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
+    <a href="{{ path('app_employee_avis_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+    </div>
 {% endblock %}

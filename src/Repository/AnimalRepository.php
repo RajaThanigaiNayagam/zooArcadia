@@ -18,17 +18,17 @@ class AnimalRepository extends ServiceEntityRepository
         parent::__construct($registry, Animal::class);
     }
 
-    //    /**
-    //     * @return Animal[] Returns an array of Animal objects
-    //     */
-    //    public function paginateAnimal(int $page, int $limit): PaginationInterface
-    //    {
-    //        return $this->paginator->paginate(
-    //            $this->createQueryBuilder('a'),
-    //            $page,
-    //            $limit
-    //        );
-    //    }
+        /**
+         * @return Animal[] Returns an array of Animal objects
+         */
+        public function paginateAnimal(int $page, int $limit): PaginationInterface
+        {
+            return $this->paginator->paginate(
+                $this->createQueryBuilder('a'),
+                $page,
+                $limit
+            );
+        }
 
     //    /**
     //     * @return Animal[] Returns an array of Animal objects

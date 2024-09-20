@@ -5,26 +5,28 @@
 {% block body %}
     <h1>Détail du service</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ service.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ service.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ service.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="datatable">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ service.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ service.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ service.description }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_employee_service_index') }}"><button class="btn btn-outline-dark my-3">Retour à la liste</button></a>
+        <a href="{{ path('app_employee_service_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
 
-    <a href="{{ path('app_employee_service_edit', {'id': service.id}) }}"><button class="btn btn-outline-dark my-3">Modifier</button></a>
+        <a href="{{ path('app_employee_service_edit', {'id': service.id}) }}"><button class="btn btn-outline-success my-3">Modifier</button></a>
 
-    {{ include('employee/service/_delete_form.html.twig') }}
+        {{ include('employee/service/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

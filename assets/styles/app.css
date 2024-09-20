@@ -180,7 +180,8 @@ h1, h2 {
 }
 form label {   
     width: 100%;
-    color: #105030;
+    /*color: #105030;*/
+    color: #fff;
     margin: 0;
 	text-align : left;
 }
