@@ -10,37 +10,51 @@ En machine localhost
    Il faut télécharger et installée XAMPP serveur depuis le site internet https://www.apachefriends.org/fr/index.html. Lancer le XAMPP depuis son emplacement et démarre le serveur "Apache" et "MySQL" en cliquant sur le premier bouton "Start" ensuite le deuxième bouton "Start". Une fois, les serveurs sont démarrés, vous pouvez ouvrir le "PHPmyadmin" en cliquant sur le deuxième "Admin" bouton sur le même niveau de MySQL. Ils ouvrent la page, "PHPmyadmin" dans un navigateur, où vous pouvez gérer les basse de donnés, les tables et les données.
 
 
-Création de compte Admin faite a la main. Pour ce faire, 
---------------------------------------------------------
-   Ouvrez le page PHPmyadmin comme expliquée juste avant, et crée une base de données nommées "quaiantique" a la main. À l'intérieur de cette base de données "quaiantique" sur l'écran d'à droite, vous cliqué sur le bouton "Importer" juste en haut de l'écran. Sélectionné le fichier nommé "quaiantique.sql" qui se trouve dans le répertoire "Dossier support/quaiantique" et lancer l'importation en cliquant sur le bouton "Importer" tout en bas de cette page.  
+Installer et exécuter le projet sur la machine locale. Pour ce faire, 
+---------------------------------------------------------------------
+   Installez symfony cli en le téléchargeant depuis le site symfony. Installez Symfony 7 en donnant le nom du répertoire ainsi que le nom du projet.
+Allez maintenant dans le répertoire du projet qui a été créé automatiquement par l'installation de symfony.
+Ici, dans ce répertoire de projet, 
+     - Vous devez démarrer le client bash
+vous pouvez commencer à exécuter le serveur Symfony en tapant "symfony serve"  
+Votre serveur symfony est lancé maintenant.
+Dans le fichier .env, vous devez remplir les données d'accès à la base de données correctes avec le nom de la base de données dans le chemin DATABASE_URL. Comme ci-dessous :-
+   DATABASE_URL="mysql://root:@root:3306/zooArcadia?serverVersion=mariadb-10.4.32&charset=utf8mb4"
 
+Supprimez la base de données qui existe auparavant et lancez la commande bash comme ci-dessous
+   -  php bin/console doctrine:database:drop --force
+Pour créer notre nouvelle base de données
+   -  php bin/console doctrine:database:create
 
-Après avoir démarré Apache et MySQL dans XAMPP, suivez les étapes suivantes.
+     Le projet est maintenant prêt et il peut être téléchargé depuis le site Web Github en suivant le chemin suivant:-
+https://github.com/RajaThanigaiNayagam/zooArcadia.git
+ 
+ Une fois téléchargé, pour inclure toutes les entités de ce projet dans la base de données nouvellement créée, 
+ exécutez la commande bash comme suit :-
+   -  php bin/console doctrine:migrations:migrate
 
-1ere étape : Ce projet est téléchargeable depuis le github.com 
-		 https://github.com/RajaThanigaiNayagam/quaiantique.git
-2ème étape : Créé un sous-répertoire nommé "quaiantique" a l'intérieure de la répertorier "xampp/htdocs/".   
-3ème étape : Coller tous les fichiers de projet dans la répertoire "xampp/htdocs/quaiantique"
-
-
-Après avoir créé la base de données, ouvrez un navigateur et accédez à l'URL "http://localhost/quaiantique".  La, vous verrez la page d'accueil de Restaurant Quantique
-
+Le projet est maintenant prêt à démarrer. L'identité et le mot de passe de l'administrateur, de l'employé et du vétérinaire sont indiqués ci-dessous   
 Admin
 ------
-id: admin
-pwd: Test@123
+id: admin@zoo.fr
+pwd: 123456
 
+employee
+--------
+id: empo@zoo.com
+pwd: 123456    
 
+vétérinaire
+--------
+id: vete@zoo.com
+pwd: 123456  
 
-Utilisateur
------------
-id: test@test.com
-pwd: Test@123      
-
-
-TRELLO 
-Un lien ver Trello : https://trello.com/b/4r3uREve      
+Le lien vers ce logiciel de gestion de projet
+TRELLO
+------ 
+  -  https://trello.com/b/4r3uREve      
          
+
  En HEROKU server de production 
 -------------------------------  
 Créez un compte sur le site web HEROKU: https://signup.heroku.com/signup/dc. Dans l'onglet "Deploy", choisissez votre méthode de déploiement (GitHub, Git, Dropbox, etc.) et suivez les instructions pour lier votre compte HEROKU à votre dépôt. Configurez les variables d'environnement HEROKU et les buildpacks necessaire(PHP et NODJS) pour que mon application les utilise pendant son exécution.  Ajoutez des addons pour votre application, tels que JawsDB.  Utiliser la commande "git push heroku master" pour déployer l’application sur Heroku.

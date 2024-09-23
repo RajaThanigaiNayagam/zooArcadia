@@ -159,7 +159,6 @@ h1, h2 {
 }
 
 .datatable{
-    background-color: white;
     margin: auto;
     width: 75%;
 	text-align : center;
@@ -180,12 +179,23 @@ h1, h2 {
 }
 form label {   
     width: 100%;
-    /*color: #105030;*/
     color: #fff;
     margin: 0;
 	text-align : left;
 }
+.datatable form label {   
+    width: 100%;
+    color: #105030;
+    margin: 0;
+	text-align : left;
+}
 
+.datatable h1, .datatable h2 {
+    font-size: 2em;
+    color: #105030;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+}
 
 thead{
     font-size: 1.1em;
