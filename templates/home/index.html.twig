@@ -104,27 +104,45 @@
         <!-- -- To display all the authorised client reviews-- -->
         <!-- -------------- ---------------------------------- -->
         <div class="row avis_section">
-            <div class="col-lg-6 col-md-6 col-12 order-1 pt-3">
+            <div class="col-lg-6 col-md-6 col-12 order-sm-1 avis_section">
+                <h1>Rédigez votre avis</h1>
+                <h6>Notre personnel inspectera votre avis et autorisera ensuite ou non</h6>
+                <div class="datatable">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col"><label for="pseudo">Nom ou Pseudo</label></div>
+                            <div class="col"><input type="text" id="pseudo" name="pseudo"><br></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label for="comment">Commentaire</label></div>
+                            <div class="col"><input type="text" id="comment" name="comment"><br></div>
+                        </div>
+                        
+                        <div><input type="submit" value="Submit"></div>
+                    </form> 
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 order-2 pt-3 avis_section">
+                <h1>Les avis des clients</h1>
                 <div>
                     <form>
-                        <div style="display: inline-block; margin-right:10px;"><label for="limit">Nombre d'enregistrement</label></div>
+                        <div style="display: inline-block; margin-right:10px;"><label for="limit">Nombre d'avis à afficher</label></div>
                         <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"></div>
                         <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
                     </form> 
                 </div>
-                <div class="table-responsive datatable">
-                    <table class="table table-bordered border-success">
-                        <thead>
-                            <tr>
-                                <th>Pseudo</th>
-                                <th>Commentaire</th>
-                            </tr>
-                        </thead>
+                <div class="table-responsive avis_section">
+                    <table class="table">
                         <tbody>
                         {% for avi in avis %}
-                            <tr>
-                                <td>{{ avi.pseudo }}</td>
-                                <td>{{ avi.commentaire }}</td>
+                            <div class="row">
+                                <div class="col">Pseudo</div>
+                                <div class="col">{{ avi.pseudo }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">Commentaire</div>
+                                <div class="col">{{ avi.commentaire }}</div>
+                            </div><br>
                         {% else %}
                             <tr>
                                 <td colspan="5">Aucun enregistrement trouvé</td>
@@ -138,29 +156,8 @@
                     <div class="pagination">
                         {{ knp_pagination_render(avis) }}
                     </div>
-
-                    <a href="{{ path('app_employee_avis_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-12 py-lg-0 py-3 order-sm-2">
-                <h1>Rédigez votre avis</h1>
-                <h1>Notre personnel inspectera votre avis et autorisera ensuite ou non</h1>
-                <div class="datatable">
-                    <form method="POST">
-                        <div class="row">
-                            <div style="display: inline-block; margin-right:10px;"><label for="pseudo">Nom ou Pseudo</label></div>
-                            <div style="display: inline-block; margin-right:10px;"><input type="text" id="pseudo" name="pseudo"><br></div>
-                        </div>
-                        <div class="row">
-                            <div style="display: inline-block; margin-right:10px;"><label for="comment">Commentaire</label></div>
-                            <div style="display: inline-block; margin-right:10px;"><input type="text" id="comment" name="comment"><br></div>
-                        </div>
-                        
-                        <div><input type="submit" value="Submit"></div>
-                    </form> 
-                </div>
-            </div>
+                </div
+            </div>><br>
         </div>
 
     {% endif %}

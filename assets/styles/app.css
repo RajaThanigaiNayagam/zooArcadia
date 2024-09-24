@@ -162,7 +162,13 @@ h1, h2 {
 }
 
 .avis_section{
+    background-color: white;
+    margin: auto;
     color: #10311d;
+	text-align : left;
+    font-weight: bold;
+    border : 1px solid #105030 !important;
+
 }
 
 .datatable{
@@ -187,12 +193,14 @@ h1, h2 {
     padding-left: 5em;
     padding-right: 5em;
 }
+
 form label {   
     width: 100%;
     color: #fff;
     margin: 0;
 	text-align : left;
 }
+
 .datatable form label {   
     width: 100%;
     color: #105030;
@@ -200,12 +208,37 @@ form label {
 	text-align : left;
 }
 
-.datatable h1, .datatable h2 {
+.datatable h1, .datatable h2, .avis_section h1{
     font-size: 2em;
     color: #105030;
     font-family: 'Rancho-Regular';
 	text-align : center;
     font-weight: bold;
+}
+.avis_section h2{
+    font-size: 1.8em;
+    color: #105030;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+
+.avis_section h6{
+    font-size: 1.2em;
+    color: #105030;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+.avis_section form label {   
+    width: 100%;
+    color: #105030;
+    margin: 0;
+	text-align : left;
+}
+
+.avis_section h6{
+    font-size: 1.2em;
 }
 
 thead{
