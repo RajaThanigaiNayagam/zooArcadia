@@ -53,6 +53,8 @@ class HomeController extends AbstractController
         $pseudo = $request->request->get('pseudo');
         $comment = $request->request->get('comment');
         if ($pseudo && $comment ) {
+            $datetime = (new \DateTimeImmutable('Europe/Paris'));
+            $avi->setCreatedAt($datetime);
             $avi->setPseudo($pseudo);
             $avi->setCommentaire($comment);
             $entityManager->persist($avi);

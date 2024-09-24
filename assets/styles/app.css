@@ -168,7 +168,7 @@ h1, h2 {
 	text-align : left;
     font-weight: bold;
     border : 1px solid #105030 !important;
-
+    padding: 1em!important;
 }
 
 .datatable{

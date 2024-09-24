@@ -23,6 +23,9 @@ class Avis
     #[ORM\Column]
     private ?bool $isVisible = false;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,5 +65,22 @@ class Avis
         $this->isVisible = $isVisible;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->pseudo;
     }
 }

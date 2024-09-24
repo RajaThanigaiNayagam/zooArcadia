@@ -106,22 +106,23 @@
         <div class="row avis_section">
             <div class="col-lg-6 col-md-6 col-12 order-sm-1 avis_section">
                 <h1>Rédigez votre avis</h1>
-                <h6>Notre personnel inspectera votre avis et autorisera ensuite ou non</h6>
-                <div class="datatable">
+                <h6>Notre personnel inspectera votre avis et autorisera ensuite ou non</h6> <br>
+                <div>
                     <form method="POST">
                         <div class="row">
-                            <div class="col"><label for="pseudo">Nom ou Pseudo</label></div>
+                            <div class="col-lg-2"><label for="pseudo">Nom ou Pseudo</label></div>
                             <div class="col"><input type="text" id="pseudo" name="pseudo"><br></div>
                         </div>
                         <div class="row">
-                            <div class="col"><label for="comment">Commentaire</label></div>
-                            <div class="col"><input type="text" id="comment" name="comment"><br></div>
+                            <div class="col-lg-2"><label for="comment">Commentaire</label></div>
+                            <div class="col"><textarea rows="2" cols="30" id="comment" name="comment"></textarea><br></div>
                         </div>
                         
-                        <div><input type="submit" value="Submit"></div>
+                        <div><input type="submit" value="Submit"></div><br>
                     </form> 
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-6 col-12 order-2 pt-3 avis_section">
                 <h1>Les avis des clients</h1>
                 <div>
@@ -136,13 +137,13 @@
                         <tbody>
                         {% for avi in avis %}
                             <div class="row">
-                                <div class="col">Pseudo</div>
-                                <div class="col">{{ avi.pseudo }}</div>
+                                <div class="col-lg-3">Pseudo</div>
+                                <div class="col">{{ avi.pseudo }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( Créé le&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ avi.getCreatedAt() ? avi.getCreatedAt()|date('Y-m-d H:i:s') : '' }} )</div>
                             </div>
                             <div class="row">
-                                <div class="col">Commentaire</div>
+                                <div class="col-lg-3">Commentaire</div>
                                 <div class="col">{{ avi.commentaire }}</div>
-                            </div><br>
+                            </div> <br> <br> 
                         {% else %}
                             <tr>
                                 <td colspan="5">Aucun enregistrement trouvé</td>
@@ -156,8 +157,8 @@
                     <div class="pagination">
                         {{ knp_pagination_render(avis) }}
                     </div>
-                </div
-            </div>><br>
+                </div>
+            </div> <br>
         </div>
 
     {% endif %}
