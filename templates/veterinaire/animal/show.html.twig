@@ -4,29 +4,35 @@
 
 {% block body %}
     <h1>Animal</h1>
-
+                <div class="row" style="font-size: 1.4em; font-weight: bold; color: #fff;">
+                    <div class="col" style="margin: auto;text-align : right;paddig: 5em;">Prenom</div>
+                    <div class="col" style="margin: auto;text-align : left;paddig: 5em;">{{ animal.prenom }}</div>
+                </div>
+                <div class="row" style="font-size: 1.4em; font-weight: bold; color: #fff;">
+                    <div class="col" style="margin: auto;text-align : right;paddig: 5em;">Etat</div>
+                    <div class="col" style="margin: auto;text-align : left;paddig: 5em;">{{ animal.etat }}</div>
+                </div>
     <div class="table-responsive datatable">
         <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                        <th>Date et heure</th>
+                        <th>Nouriture</th>
+                        <th>Grammage (en gram)</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ animal.id }}</td>
-                </tr>
-                <tr>
-                    <th>Prenom</th>
-                    <td>{{ animal.prenom }}</td>
-                </tr>
-                <tr>
-                    <th>Etat</th>
-                    <td>{{ animal.etat }}</td>
-                </tr>
+                {% for employeereport in animal.getRapportEmployees() %}
+                    <tr>
+                        <td>{{ employeereport.getCreatedAt() ? employeereport.getCreatedAt()|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ employeereport.getNourriture() }}</td>
+                        <td>{{ employeereport.getQuantity() }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
 
         <a href="{{ path('app_veterinaire_animal_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
 
-        <a href="{{ path('app_veterinaire_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success my-3">Modifier</button></a>
-
-        {{ include('veterinaire/animal/_delete_form.html.twig') }}
     </div>
 {% endblock %}

@@ -27,9 +27,12 @@
                     <td>{{ animal.prenom }}</td>
                     <td>{{ animal.etat }}</td>
                     <td>
+                        <a href="{{ path('app_veterinaire_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">Rapport</button></a>
+                    </td>
+                    <!--<td>
                         <a href="{{ path('app_veterinaire_animal_show', {'id': animal.id}) }}"><button class="btn btn-outline-success">View</button></a>
                         <a href="{{ path('app_veterinaire_animal_edit', {'id': animal.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
-                    </td>
+                    </td>-->
                 </tr>
             {% else %}
                 <tr>
@@ -43,6 +46,5 @@
             {{ knp_pagination_render(animals) }}
         </div>
 
-        <a href="{{ path('app_veterinaire_animal_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
 {% endblock %}
