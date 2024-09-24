@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
 use App\Entity\AnimalImage;
+use App\Repository\AvisRepository;
 use App\Repository\AnimalRepository;
 use App\Repository\HoraireRepository;
 use App\Repository\HabitatRepository;
@@ -18,7 +20,10 @@ class HomeController extends AbstractController
     public function index(
         HoraireRepository $horaireRepository, 
         HabitatRepository $habitatRepository, 
-        AnimalRepository $animalRepository
+        AnimalRepository $animalRepository,
+        AvisRepository $avisRepository,
+        EntityManagerInterface $entityManager,
+        Request $request
         ): Response
     {
         $ActualUser = $this->getUser() ;
@@ -29,14 +34,34 @@ class HomeController extends AbstractController
         if ( $ActualUser ) {
             $userroles = $ActualUser->getroles();
             foreach ( $userroles as &$userrole ) {
-                if ( $userrole ==  "ROLE_ADMIN" ) { 
-                    $roleadmin = true ; 
-                } 
+                if ( $userrole ==  "ROLE_ADMIN" ) { $roleadmin = true ; } 
                 elseif ( $userrole ==  "ROLE_VETERINAIRE" ) { $roleveterinaire = true ; } 
                 elseif ( $userrole ==  "ROLE_EMPLOYEE" ) { $roleemployee = true ; }
             }
         }
 
+        /*-------------------------------------------------------- -*/
+        /*------- To read all the authorised client reviews------- -*/
+        /*-------------------------------------------------------- -*/
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $authorisedavis = $avisRepository->paginateAuthorisedAvis($page, $limit);
+        $maxPage = ceil( $authorisedavis->getTotalItemCount() / $limit );
+
+        $avi = new Avis();
+        $pseudo = $request->request->get('pseudo');
+        $comment = $request->request->get('comment');
+        if ($pseudo && $comment ) {
+            $avi->setPseudo($pseudo);
+            $avi->setCommentaire($comment);
+            $entityManager->persist($avi);
+            $entityManager->flush();
+
+            //return $this->redirectToRoute('app_home');
+        }
+
+        /*-------------------------------------------------------- -*/
 
         return $this->render('home/index.html.twig', [
             'horaires' => $horaireRepository->findAll(),
@@ -47,6 +72,9 @@ class HomeController extends AbstractController
             'roleadmin' => $roleadmin,
             'roleveterinaire' => $roleveterinaire,
             'roleemployee' => $roleemployee,
+            'avis' => $authorisedavis,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
 

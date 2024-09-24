@@ -12,7 +12,7 @@
         </form> 
     </div>
 
-    <div class="datatable">
+    <div class="table-responsive datatable">
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
@@ -41,11 +41,11 @@
             </tbody>
         </table>
 
-    <div class="pagination">
-        {{ knp_pagination_render(services) }}
-    </div>
+        <div class="pagination">
+            {{ knp_pagination_render(services) }}
+        </div>
 
 
-    <a href="{{ path('app_admin_zooservice_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+        <a href="{{ path('app_admin_zooservice_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
 {% endblock %}

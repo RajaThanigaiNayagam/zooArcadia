@@ -12,7 +12,7 @@
         </form> 
     </div>
 
-    <div class="datatable">
+    <div class="table-responsive datatable">
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
@@ -42,12 +42,11 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
     
-    <div class="pagination">
-        {{ knp_pagination_render(rapport_employees) }}
-
-
-    <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+        <div class="pagination">
+            {{ knp_pagination_render(rapport_employees) }}
+        </div>
+*
+        <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
 {% endblock %}

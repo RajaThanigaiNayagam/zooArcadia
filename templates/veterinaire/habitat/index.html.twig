@@ -12,11 +12,10 @@
         </form> 
     </div>
 
-    <div class="datatable">
-        <table class="table">
+    <div class="table-responsive datatable">
+        <table class="table table-bordered border-success">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Commentaire_habitat</th>
@@ -26,7 +25,6 @@
             <tbody>
             {% for habitat in habitats %}
                 <tr>
-                    <td>{{ habitat.id }}</td>
                     <td>{{ habitat.nom }}</td>
                     <td>{{ habitat.description }}</td>
                     <td>{{ habitat.commentaireHabitat }}</td>
@@ -43,10 +41,10 @@
             </tbody>
         </table>
         
-    <div class="pagination">
-        {{ knp_pagination_render(habitats) }}
-    </div>
+        <div class="pagination">
+            {{ knp_pagination_render(habitats) }}
+        </div>
 
-    <a href="{{ path('app_veterinaire_habitat_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+        <a href="{{ path('app_veterinaire_habitat_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
 {% endblock %}

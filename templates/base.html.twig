@@ -22,31 +22,12 @@
     <body>
         {% include 'partials/navbar.html.twig' %}
             
-
-    
-    <header class="header">
-    <h1>Page d'accueil de Personnel de ZOO ARCADIA seulement.</h1> 
-        {% if app.user %}
-            <div class="flash-message my-2 mb-4">
-                Vous êtes connecté en tant que <b>{{ app.user.userIdentifier }}</b>, et son rôle est 
-                {% for role in app.user.roles %}
-                    <b>{{ role }}</b>
-                {% endfor %}
+        <header class="header">
+            <div class="flash-message my-4">
+                {% include 'partials/flash.html.twig' %}
+                {% block body %}{% endblock %}
             </div>
-        {% else %}
-            <div class="flash-message my-2 mb-4">
-                <b>Vous n'êtes pas connecté</b>
-            </div>
-        {% endif %}
-
-
-        <div class="flash-message my-4">
-            {% include 'partials/flash.html.twig' %}
-            {% block body %}{% endblock %}
-        </div>
-        
-    </header>
-
+        </header>
 
         <div class="clearfix"></div>
     </body>

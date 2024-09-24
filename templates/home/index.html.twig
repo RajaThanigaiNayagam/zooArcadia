@@ -15,24 +15,31 @@
             <div>
                 {{ include('home/admin.html.twig') }}
             </div>
-        {% elseif roleveterinaire %}
+        {% elseif roleemployee %}
             <!-- Page d'accueil d'veterinaire -->
             <div>
                 {{ include('home/employee.html.twig') }}
             </div>
-        {% elseif roleemployee %}
+        {% elseif roleveterinaire %}
             <!-- Page d'accueil d'employee -->
             <div>
                 {{ include('home/veterinaire.html.twig') }}
             </div>
         {% endif %}
+        <h1>Page d'accueil de Personnel de ZOO ARCADIA seulement.</h1> 
+        Vous êtes connecté en tant que <b>{{ app.user.userIdentifier }}</b>, et son rôle est 
+        {% for role in app.user.roles %}
+            <b>{{ role }}</b>
+        {% endfor %}
     {% else %}
+        <h1>Page d'accueil de Visiteur de ZOO ARCADIA.</h1> 
+
         <!-- -------------- ---------------------------------- -->
         <!-- ------------Utilisateur non connecté ------------ -->
         <!-- -----------------Horaire de zoo ----------------- -->
             <h1>Horaire du zoo </h1>
             <section class="horaire">
-                <div class="horairetable">
+                <div class="table-responsive horairetable">
                     <table class="table">
                         <thead>
                             <tr>
@@ -92,27 +99,70 @@
             {% endfor %}
         </div> 
 
-    {% endif %}
-    
+        
+        <!-- -------------- ---------------------------------- -->
+        <!-- -- To display all the authorised client reviews-- -->
+        <!-- -------------- ---------------------------------- -->
+        <div class="row avis_section">
+            <div class="col-lg-6 col-md-6 col-12 order-1 pt-3">
+                <div>
+                    <form>
+                        <div style="display: inline-block; margin-right:10px;"><label for="limit">Nombre d'enregistrement</label></div>
+                        <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"></div>
+                        <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+                    </form> 
+                </div>
+                <div class="table-responsive datatable">
+                    <table class="table table-bordered border-success">
+                        <thead>
+                            <tr>
+                                <th>Pseudo</th>
+                                <th>Commentaire</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for avi in avis %}
+                            <tr>
+                                <td>{{ avi.pseudo }}</td>
+                                <td>{{ avi.commentaire }}</td>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- -------------- ---------------------------------- -->
+                    <!-- - pagination of all the authorised client reviews -->
+                    <!-- -------------- ---------------------------------- -->
+                    <div class="pagination">
+                        {{ knp_pagination_render(avis) }}
+                    </div>
 
-<!--<div class="row">
-    <div class="col-md-12 text-center">
-    <div class="col" style="text-align : right">
-        <a><img src="image/zoo logo.jpg" alt="logo" width="50px" height="50px"></a>
-    </div>-->
-    <!--<div class="col-md-12 text-center">
-    <div class="col" style="text-align : left">
-        <button type="button" onclick="window.location.href='/home'" class="btn btn-outline-success"><em></em></button>
-    </div>
-</div>-->
-    
-<!-- ✅
-<div class="example-wrapper">
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/symfony/project/zooArcadia/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/symfony/project/zooArcadia/templates/home/index.html.twig</code></li>
-    </ul>
-</div>-->
+                    <a href="{{ path('app_employee_avis_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12 py-lg-0 py-3 order-sm-2">
+                <h1>Rédigez votre avis</h1>
+                <h1>Notre personnel inspectera votre avis et autorisera ensuite ou non</h1>
+                <div class="datatable">
+                    <form method="POST">
+                        <div class="row">
+                            <div style="display: inline-block; margin-right:10px;"><label for="pseudo">Nom ou Pseudo</label></div>
+                            <div style="display: inline-block; margin-right:10px;"><input type="text" id="pseudo" name="pseudo"><br></div>
+                        </div>
+                        <div class="row">
+                            <div style="display: inline-block; margin-right:10px;"><label for="comment">Commentaire</label></div>
+                            <div style="display: inline-block; margin-right:10px;"><input type="text" id="comment" name="comment"><br></div>
+                        </div>
+                        
+                        <div><input type="submit" value="Submit"></div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
 
 {% endblock %}

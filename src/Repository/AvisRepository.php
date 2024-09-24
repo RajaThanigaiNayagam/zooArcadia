@@ -30,6 +30,21 @@ class AvisRepository extends ServiceEntityRepository
         );
     }
 
+
+    /**
+     * @return Avis[] Returns an array of Animal objects
+     */
+    public function paginateAuthorisedAvis(int $page, int $limit): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->createQueryBuilder('a')
+            ->andWhere('a.isVisible = true'),
+            $page,
+            $limit
+        );
+    }
+
+
     //    /**
     //     * @return Avis[] Returns an array of Avis objects
     //     */

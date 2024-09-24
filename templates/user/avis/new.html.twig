@@ -4,10 +4,11 @@
 
 {% block body %}
     <h1>Rédigez votre avis</h1>
+    <h1>Notre personnel inspectera votre avis et autorisera ensuite ou non</h1>
 
     <div class="datatable">
         {{ include('user/avis/_form.html.twig') }}
 
-    <a href="{{ path('app_home') }}"><button class="btn btn-outline-success my-3">Retour à l'accueil</button></a>
+        <a href="{{ path('app_home') }}"><button class="btn btn-outline-success my-3">Retour à l'accueil</button></a>
     </div>
 {% endblock %}

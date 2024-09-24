@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RapportEmployee{% endblock %}
+{% block title %}Rapport de l'employé{% endblock %}
 
 {% block body %}
-    <h1>RapportEmployee</h1>
+    <h1>Rapport de l'employé</h1>
 
-    <div class="datatable">
-        <table class="table">
+    <div class="table-responsive datatable">
+        <table class="table table-bordered border-success">
             <tbody>
                 <tr>
                     <th>Id</th>
@@ -26,8 +26,8 @@
                 </tr>
             </tbody>
         </table>
-    <a href="{{ path('app_veterinaire_rapport_employee_index') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+        <a href="{{ path('app_veterinaire_rapport_employee_index') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
 
-    {{ include('veterinaire/rapport_employee/_delete_form.html.twig') }}
+        {{ include('veterinaire/rapport_employee/_delete_form.html.twig') }}
     </div> 
 {% endblock %}

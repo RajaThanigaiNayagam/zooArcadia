@@ -12,11 +12,10 @@
         </form> 
     </div>
 
-    <div class="datatable">
+    <div class="table-responsive datatable">
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Username</th>
                     <th>Roles</th>
                     <th>Email</th>
@@ -29,7 +28,6 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                     <td>{{ user.email }}</td>
@@ -49,11 +47,10 @@
             </tbody>
         </table>
     
-    <div class="pagination">
-        {{ knp_pagination_render(users) }}
-    </div>
+        <div class="pagination">
+            {{ knp_pagination_render(users) }}
+        </div>
 
-
-    <a href="{{ path('app_admin_user_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+        <a href="{{ path('app_admin_user_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
 {% endblock %}
