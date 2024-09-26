@@ -40,10 +40,10 @@
             </tbody>
         </table>
     
-    <div class="pagination">
-        {{ knp_pagination_render(rapport_employees) }}
-    </div>
+        <div class="pagination">
+            {{ knp_pagination_render(rapport_employees) }}
+        </div> <br>
 
-    <a href="{{ path('app_veterinaire_rapport_employee_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
+        <a href="{{ path('app_veterinaire_rapport_employee_new') }}"><button class="btn btn-outline-light my-3">Créer nouveau</button></a>
     </div>
 {% endblock %}

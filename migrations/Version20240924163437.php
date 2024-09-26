@@ -21,11 +21,13 @@ final class Version20240924163437 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE avis ADD created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\'');
+        //$this->addSql('ALTER TABLE role ADD created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\'');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE avis DROP created_at');
+        //$this->addSql('ALTER TABLE role DROP created_at');
     }
 }

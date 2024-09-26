@@ -19,7 +19,7 @@
                     <th>Id</th>
                     <th>Pseudo</th>
                     <th>Commentaire</th>
-                    <th>IsVisible</th>
+                    <th>Avis visible</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -31,8 +31,7 @@
                     <td>{{ avi.commentaire }}</td>
                     <td>{{ avi.isVisible ? 'Yes' : 'No' }}</td>
                     <td>
-                        <a href="{{ path('app_employee_avis_show', {'id': avi.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                        <a href="{{ path('app_employee_avis_edit', {'id': avi.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                        <a href="{{ path('app_employee_avis_edit', {'id': avi.id}) }}"><button class="btn btn-outline-success">Avis visible?</button></a>
                     </td>
                 </tr>
             {% else %}
@@ -45,7 +44,7 @@
     
         <div class="pagination">
             {{ knp_pagination_render(avis) }}
-        </div>
+        </div> <br>
     </div>
 
 {% endblock %}
