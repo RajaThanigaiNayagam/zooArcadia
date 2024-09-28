@@ -75,20 +75,23 @@ class HomeController extends AbstractController
         /*-------------------------------------------------------- -*/
         /*------- To read all the authorised client reviews------- -*/
         /*-------------------------------------------------------- -*/
-        $ActualUser = $this->getUser()->getId() ;
+        $rapportEmployee = '';
+        if ( $roleemployee ==  "ROLE_EMPLOYEE" ){
+            $ActualUser = $this->getUser()->getId() ;
 
-        //pagination - get current page number and number of records to be displayed in a page from method POST or GET
-        $page = $request->query->getint('page', 1);
-        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
-        
-        $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUser);
-        $maxPage = ceil( $rapportEmployee->getTotalItemCount() / $limit );
-        
-        return $this->render('employee/rapport/index.html.twig', [
-            'rapport_employees' => $rapportEmployee,
-            'maxPage' => $maxPage,
-            'page' => $page,
-        ]);
+            //pagination - get current page number and number of records to be displayed in a page from method POST or GET
+            $page = $request->query->getint('page', 1);
+            if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+            
+            $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUser);
+            $maxPage = ceil( $rapportEmployee->getTotalItemCount() / $limit );
+            
+            /*return $this->render('employee/rapport/index.html.twig', [
+                'rapport_employees' => $rapportEmployee,
+                'maxPage' => $maxPage,
+                'page' => $page,
+            ]);*/
+        }
         /* ------------------------------------------------------- -*/
 
 
