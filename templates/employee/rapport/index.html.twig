@@ -16,7 +16,7 @@
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Animal</th>
                     <th>Nourriture</th>
                     <th>Nourriture donnée à</th>
                     <th>Quantité (en gramme)</th>
@@ -26,9 +26,9 @@
             <tbody>
             {% for rapport_employee in rapport_employees %}
                 <tr>
-                    <td>{{ rapport_employee.id }}</td>
+                    <td>{{ rapport_employee.getAnimal().prenom }}</td>
                     <td>{{ rapport_employee.nourriture }}</td>
-                    <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                     <td>{{ rapport_employee.quantity }}</td>
                     <td>
                         <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">View</button></a>
@@ -46,7 +46,7 @@
         <div class="pagination">
             {{ knp_pagination_render(rapport_employees) }}
         </div> <br>
-*
+
         <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau rapport</button></a>
     </div>
 {% endblock %}

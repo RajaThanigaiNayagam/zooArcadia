@@ -201,7 +201,7 @@ form label {
 	text-align : left;
 }
 
-.datatable form label {   
+.datatable form label, .datatable form legend {   
     width: 100%;
     color: #105030;
     margin: 0;
@@ -256,7 +256,7 @@ thead{
 
 /* ---------------------tableau d'horaire--------------------- */
 .horaire{
-    width: 80%;
+    width: 20%;
     margin : auto;
     display: inline-block; 
 	text-align : left;
@@ -333,12 +333,62 @@ thead{
     font-size: 1em;
     color: #105030;
 }
-/* ----------------------------------------------------------- */
+
+/* ------------------------------------------------------------ */
 
 
 
-/* --------------------Responsive-ecran 991------------------- */
+/* ------------------------------------------------------------ */
+/* -------------------- **Responsive-ecran**------------------- */
+/* ------------------------------------------------------------ */
+
+
+
+/* --------------------Responsive-ecran 1426------------------- */
+@media (max-width:1426px){
+    /* ---------------------tableau d'horaire--------------------- */
+    .horaire{
+        width: 30%;
+        margin : auto;
+        display: inline-block; 
+        text-align : left;
+        padding: 0;
+    }
+    /* ----------------------------------------------------------- */
+}
+/* ------------------- Responsive-ecran 1426 ------------------ */
+
+
+/* --------------------Responsive-ecran 1120------------------- */
+@media (max-width:1120px){
+    /* ---------------------tableau d'horaire--------------------- */
+    .horaire{
+        width: 40%;
+        margin : auto;
+        display: inline-block; 
+        text-align : left;
+        padding: 0;
+    }
+    /* ----------------------------------------------------------- */
+}
+/* ------------------- Responsive-ecran 1120 ------------------ */
+    
+
+
+/* -------------------- Responsive-ecran 991------------------- */
 @media (max-width:991px){
+    /* ---------------------tableau d'horaire--------------------- */
+    .horaire{
+        width: 50%;
+        margin : auto;
+        display: inline-block; 
+        text-align : left;
+        padding: 0;
+    }
+    /* ----------------------------------------------------------- */
+    
+    
+    /* --------------------- Nav bar header ---------------------- */
     .nav > li > a {
         position: relative;
         display: block;
@@ -378,55 +428,58 @@ thead{
         padding-top: 0;
         padding-bottom: 0;
     }
+}
+/* --------------------Responsive-ecran 991------------------ */
+    
+    
 
 
-    @media (max-width:409px){
-        .logo{
-            background-image:url(../image/zoo_logo.jpg);
-            height:7vh;
-            width:8vh;
-            display: inline-block;
-            background-size:cover;
-            float: top;
-        }
+    
+/* --------------------Responsive-ecran 576------------------- */
+@media (max-width:576px){
 
-        .navbar-brand {
-            text-decoration: none;
-            color:#105030;
-            /*font-size: 1.5em;
-            font-family: 'Rancho-Regular';*/
-            font-family: 'Petit Formal Script', cursive;
-            font-size: 25px;
-            font-weight: bold;
-            text-transform: capitalize;
-            letter-spacing: 2px;
-            padding-top: 0;
-            padding-bottom: 0;
-        }
+    /* ---------------------tableau d'horaire--------------------- */
+    .horaire{
+        width: 60%;
+        margin : auto;
+        display: inline-block; 
+        text-align : left;
+        padding: 0;
     }
     /* ----------------------------------------------------------- */
-    
-    
-    
-    /* --------------------Responsive-ecran 576------------------- */
-    @media (max-width:576px){
+}
+/* -------------------- Fin Responsive-ecran 576------------------ */
 
-        /* ---------------------tableau d'horaire--------------------- */
-        .horaire{
-            width: 100%;
-            margin : auto;
-            display: inline-block; 
-            text-align : left;
-            padding: 0;
-        }
-        .horairetable{
-            border: 1px solid white;
-            color :#105030;
-            margin : auto;
-            padding: 0;
-            text-align : center;
-            font-weight: bold;
-        }
-        /* ----------------------------------------------------------- */
+
+
+
+
+
+/* ----------------------Responsive-ecran 409--------------------- */
+@media (max-width:409px){
+    .logo{
+        background-image:url(../image/zoo_logo.jpg);
+        height:7vh;
+        width:8vh;
+        display: inline-block;
+        background-size:cover;
+        float: top;
+    }
+
+    .navbar-brand {
+        text-decoration: none;
+        color:#105030;
+        /*font-size: 1.5em;
+        font-family: 'Rancho-Regular';*/
+        font-family: 'Petit Formal Script', cursive;
+        font-size: 25px;
+        font-weight: bold;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 }
+/* ----------------------------------------------------------- */
+
+

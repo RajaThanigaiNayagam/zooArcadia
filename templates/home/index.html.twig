@@ -10,6 +10,11 @@
 
     {% if app.user %}
         <!-- --------------Utilisateur connecté-------------- -->
+        <h1>Page d'accueil de Personnel de ZOO ARCADIA seulement.</h1> 
+        Vous êtes connecté en tant que <b>{{ app.user.userIdentifier }}</b>, et son rôle est 
+        {% for role in app.user.roles %}
+            <b>{{ role }}</b>
+        {% endfor %}
         {% if roleadmin %}
             <!-- Page d'accueil d'admin -->
             <div>
@@ -26,11 +31,6 @@
                 {{ include('home/veterinaire.html.twig') }}
             </div>
         {% endif %}
-        <h1>Page d'accueil de Personnel de ZOO ARCADIA seulement.</h1> 
-        Vous êtes connecté en tant que <b>{{ app.user.userIdentifier }}</b>, et son rôle est 
-        {% for role in app.user.roles %}
-            <b>{{ role }}</b>
-        {% endfor %}
     {% else %}
         <h1>Page d'accueil de Visiteur de ZOO ARCADIA.</h1> 
 
@@ -39,7 +39,7 @@
         <!-- -----------------Horaire de zoo ----------------- -->
             <h1>Horaire du zoo </h1>
             <section class="horaire">
-                <div class="table-responsive horairetable">
+                <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>

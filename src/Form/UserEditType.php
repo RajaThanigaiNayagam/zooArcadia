@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class UserType extends AbstractType
+class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -24,7 +24,6 @@ class UserType extends AbstractType
                 ],
                 'expanded' => true,
             ])
-            ->add('password')
             ->add('email')
             ->add('nom')
             ->add('prenom')

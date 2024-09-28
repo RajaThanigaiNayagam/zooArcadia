@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\UserEditType;
+use App\Repository\RoleRepository;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,15 +33,35 @@ class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, RoleRepository $roleRepository): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+        $roleid ='';
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $userroles = array("ROLE_USER");
+            $userrole = $form->get('rolechoice')->getData();
+            if ($userrole =="veterinary") {$userrole ="ROLE_VETERINAIRE";} elseif ( $userrole =="employee" ) {$userrole ="ROLE_EMPLOYEE";} else {$userrole ="";} ;
+            $rolerepository = $roleRepository->findAll();
+            foreach ($rolerepository as $usrrole){ 
+                dump($usrrole->getlabel());
+                dump($userrole);
+                if ($usrrole->getlabel() == $userrole){
+                    $userroles[] = $userrole; 
+                    $user->setRoles($userroles);
+                    $roleid = $usrrole->getId() ;
+                }
+            }
+            if ($roleid) {
+                $roleUserIdRepository = $roleRepository->findOneBy( array('id' => $roleid) );
+                $user->setRole($roleUserIdRepository);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            } else {
+                $this->addFlash('danger', 'Le rôle de l\'utilisateur n\'existe pas ou ne correspond pas');
+            }
 
             return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -59,13 +81,34 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, RoleRepository $roleRepository): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserEditType::class, $user);
         $form->handleRequest($request);
 
+        $roleid ='';
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $userroles = array("ROLE_USER");
+            $userrole = $form->get('rolechoice')->getData();
+            if ($userrole =="veterinary") {$userrole ="ROLE_VETERINAIRE";} elseif ( $userrole =="employee" ) {$userrole ="ROLE_EMPLOYEE";} else {$userrole ="";} ;
+            $rolerepository = $roleRepository->findAll();
+            foreach ($rolerepository as $usrrole){ 
+                dump($usrrole->getlabel());
+                dump($userrole);
+                if ($usrrole->getlabel() == $userrole){
+                    $userroles[] = $userrole; 
+                    $user->setRoles($userroles);
+                    $roleid = $usrrole->getId() ;
+                }
+            }
+            if ($roleid) {
+                $roleUserIdRepository = $roleRepository->findOneBy( array('id' => $roleid) );
+                $user->setRole($roleUserIdRepository);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            } else {
+                $this->addFlash('danger', 'Le rôle de l\'utilisateur n\'existe pas ou ne correspond pas');
+            }
 
             return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
         }

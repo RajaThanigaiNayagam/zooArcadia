@@ -6,6 +6,7 @@
     <h1>Rapport créé par l'employé</h1>
 
     <div class="table-responsive datatable">
+        <div class="avis_section"><h6>Date et heure actuelles - {{ "now"|date("m/d/Y - H:i") }}</h6></div>
         <table class="table">
             <tbody>
                 <tr>
@@ -18,7 +19,7 @@
                 </tr>
                 <tr>
                     <th>Rapport créé à</th>
-                    <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Quantité</th>
@@ -27,9 +28,9 @@
             </tbody>
         </table>
 
-        <a href="{{ path('app_employee_rapport_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
+        <div><a href="{{ path('app_employee_rapport_index') }}"><button class="btn btn-outline-success my-2">Retour à la liste</button></a></div>
 
-        <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success my-3">Modifier</button></a>
+        <div><a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success my-2">Modifier</button></a></div>
 
         {{ include('employee/rapport/_delete_form.html.twig') }}
     </div>

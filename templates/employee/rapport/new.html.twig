@@ -6,6 +6,7 @@
     <h1>Créer un nouveau rapport par employé</h1>
 
     <div class="datatable">
+        <div class="avis_section"><h6>Date et heure actuelles - {{ "now"|date("m/d/Y - H:i") }}</h6></div>
         {{ include('employee/rapport/_form.html.twig') }}
     
         <a href="{{ path('app_employee_rapport_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>

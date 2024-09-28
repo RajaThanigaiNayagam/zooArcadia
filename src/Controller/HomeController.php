@@ -8,6 +8,7 @@ use App\Repository\AvisRepository;
 use App\Repository\AnimalRepository;
 use App\Repository\HoraireRepository;
 use App\Repository\HabitatRepository;
+use App\Repository\RapportEmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,7 @@ class HomeController extends AbstractController
         HabitatRepository $habitatRepository, 
         AnimalRepository $animalRepository,
         AvisRepository $avisRepository,
+        RapportEmployeeRepository $rapportEmployeeRepository,
         EntityManagerInterface $entityManager,
         Request $request
         ): Response
@@ -40,6 +42,10 @@ class HomeController extends AbstractController
             }
         }
 
+
+        
+        /*-------------------------------------------------------- -*/
+        /* -----------------------VISITEUR ----------------------- -*/
         /*-------------------------------------------------------- -*/
         /*------- To read all the authorised client reviews------- -*/
         /*-------------------------------------------------------- -*/
@@ -63,12 +69,38 @@ class HomeController extends AbstractController
             //return $this->redirectToRoute('app_home');
         }
 
+        
         /*-------------------------------------------------------- -*/
+        /* -----------------------VISITEUR ----------------------- -*/
+        /*-------------------------------------------------------- -*/
+        /*------- To read all the authorised client reviews------- -*/
+        /*-------------------------------------------------------- -*/
+        $ActualUser = $this->getUser()->getId() ;
+
+        //pagination - get current page number and number of records to be displayed in a page from method POST or GET
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUser);
+        $maxPage = ceil( $rapportEmployee->getTotalItemCount() / $limit );
+        
+        return $this->render('employee/rapport/index.html.twig', [
+            'rapport_employees' => $rapportEmployee,
+            'maxPage' => $maxPage,
+            'page' => $page,
+        ]);
+        /* ------------------------------------------------------- -*/
+
+
+        /* ------------------------------------------------------- -*/
+        /* -------------------- FORM RENDERING-------------------- -*/
+        /* ------------------------------------------------------- -*/
 
         return $this->render('home/index.html.twig', [
             'horaires' => $horaireRepository->findAll(),
             'habitats' => $habitatRepository->findAll(),
             'animals' => $animalRepository->findAll(),
+            'rapport_employees' => $rapportEmployee,
             'actualUser' => $ActualUser,
             'userroles' => $userroles,
             'roleadmin' => $roleadmin,

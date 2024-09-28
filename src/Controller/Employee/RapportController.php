@@ -19,6 +19,7 @@ class RapportController extends AbstractController
     {
         $ActualUser = $this->getUser()->getId() ;
 
+        //pagination - get current page number and number of records to be displayed in a page from method POST or GET
         $page = $request->query->getint('page', 1);
         if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
         

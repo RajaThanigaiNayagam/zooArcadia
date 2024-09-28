@@ -45,12 +45,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $prenom = null;
 
     /**
-     * @var Collection<int, Role>
-     */
-    #[ORM\OneToMany(targetEntity: Role::class, mappedBy: 'user')]
-    private Collection $roleno;
-
-    /**
      * @var Collection<int, RapportVeterinaire>
      */
     #[ORM\OneToMany(targetEntity: RapportVeterinaire::class, mappedBy: 'user', orphanRemoval: true)]
@@ -65,9 +59,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Role $role = null;
+
     public function __construct()
     {
-        $this->roleno = new ArrayCollection();
         $this->rapport_veterinaire = new ArrayCollection();
         $this->user = new ArrayCollection();
     }
@@ -183,35 +180,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Role>
-     */
-    public function getNo(): Collection
-    {
-        return $this->roleno;
-    }
-
-    public function addRoleNo(Role $roleno): static
-    {
-        if (!$this->roleno->contains($roleno)) {
-            $this->roleno->add($roleno);
-            $roleno->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRoleNo(Role $roleno): static
-    {
-        if ($this->roleno->removeElement($roleno)) {
-            // set the owning side to null (unless already changed)
-            if ($roleno->getUser() === $this) {
-                $roleno->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, RapportVeterinaire>
@@ -288,5 +256,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->username;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): static
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }

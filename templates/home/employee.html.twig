@@ -1,4 +1,48 @@
     <div class="container">
-        Voici la page d'accueil de l'employé.
-        qui vient de la page employee.html.twig
+        <h1>Liste de rapport de l'employé</h1>
+        <div>
+            <form>
+                <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+                <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
+                <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+            </form> 
+        </div>
+
+        <div class="table-responsive datatable">
+            <table class="table table-bordered border-success">
+                <thead>
+                    <tr>
+                        <th>Animal</th>
+                        <th>Nourriture</th>
+                        <th>Nourriture donnée à</th>
+                        <th>Quantité (en gramme)</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for rapport_employee in rapport_employees %}
+                    <tr>
+                        <td>{{ rapport_employee.getAnimal().prenom }}</td>
+                        <td>{{ rapport_employee.nourriture }}</td>
+                        <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                        <td>{{ rapport_employee.quantity }}</td>
+                        <td>
+                            <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                            <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        
+            <div class="pagination">
+                {{ knp_pagination_render(rapport_employees) }}
+            </div> <br>
+    
+            <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau rapport</button></a>
+        </div>
     </div>
