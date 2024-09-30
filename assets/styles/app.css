@@ -144,7 +144,7 @@ h1, h2 {
 .header
 {
 	/*background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/zoo.jpg);*/
-	background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+	background-image:url(../image/zoo.jpg);
 	background-size:cover;
 	height:130vh;
 	background-position:center;
@@ -363,7 +363,7 @@ thead{
 @media (max-width:1426px){
     .header
     {
-        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-image:url(../image/zoo.jpg) ;
         background-size:cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -392,7 +392,7 @@ thead{
 @media (max-width:1120px){
     .header
     {
-        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-image:url(../image/zoo.jpg) ;
         background-size:cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -421,7 +421,7 @@ thead{
 @media (max-width:991px){
     .header
     {
-        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-image:url(../image/zoo.jpg);
         background-size:cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -492,7 +492,7 @@ thead{
 @media (max-width:576px){
     .header
     {
-        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-image:url(../image/zoo.jpg);
         background-size:cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -525,7 +525,7 @@ thead{
 @media (max-width:480px){
     .header
     {
-        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-image:url(../image/zoo.jpg) ;
         background-size:cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -571,7 +571,7 @@ thead{
 @media (max-width:320px){
     .header
     {
-        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-image:url(../image/zoo.jpg) ;
         background-size:cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
