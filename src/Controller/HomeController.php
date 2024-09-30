@@ -7,6 +7,7 @@ use App\Entity\AnimalImage;
 use App\Repository\AvisRepository;
 use App\Repository\AnimalRepository;
 use App\Repository\HoraireRepository;
+use App\Repository\ContactRepository;
 use App\Repository\HabitatRepository;
 use App\Repository\RapportEmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,11 +24,15 @@ class HomeController extends AbstractController
         HabitatRepository $habitatRepository, 
         AnimalRepository $animalRepository,
         AvisRepository $avisRepository,
+        ContactRepository $contactRepository,
         RapportEmployeeRepository $rapportEmployeeRepository,
         EntityManagerInterface $entityManager,
         Request $request
         ): Response
     {
+        /*-------------------------------------------------------- -*/
+        /*------- To read the role of the staff connected -------- -*/
+        /*-------------------------------------------------------- -*/
         $ActualUser = $this->getUser() ;
         $roleadmin = false;
         $roleveterinaire = false;
@@ -41,7 +46,6 @@ class HomeController extends AbstractController
                 elseif ( $userrole ==  "ROLE_EMPLOYEE" ) { $roleemployee = true ; }
             }
         }
-
 
         
         /*-------------------------------------------------------- -*/
@@ -71,26 +75,31 @@ class HomeController extends AbstractController
 
         
         /*-------------------------------------------------------- -*/
-        /* -----------------------VISITEUR ----------------------- -*/
+        /* -----------------------Employee ----------------------- -*/
         /*-------------------------------------------------------- -*/
-        /*------- To read all the authorised client reviews------- -*/
+        /*--------display visiter reviews and contact msg -------- -*/
         /*-------------------------------------------------------- -*/
         $rapportEmployee = '';
         if ( $roleemployee ==  "ROLE_EMPLOYEE" ){
             $ActualUser = $this->getUser()->getId() ;
 
+            //To get all the employee's reports
             //pagination - get current page number and number of records to be displayed in a page from method POST or GET
             $page = $request->query->getint('page', 1);
             if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
             
+            //To execute the SQL query to get all the concerned employee's report
             $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUser);
             $maxPage = ceil( $rapportEmployee->getTotalItemCount() / $limit );
+
+            //pagination - get current page number and number of records to be displayed in a page from method POST or GET
+            $contactpage = $request->query->getint('contactpage', 1);
+            if ( $request->query->getint('contactlimit') ){ $contactlimit = $request->query->getint('contactlimit'); }else{$contactlimit = $request->query->getint('contactlimit', 3);}
             
-            /*return $this->render('employee/rapport/index.html.twig', [
-                'rapport_employees' => $rapportEmployee,
-                'maxPage' => $maxPage,
-                'page' => $page,
-            ]);*/
+            //To get all the contact message sent by the visiter
+            $contactvisiter = $contactRepository->paginateContact($contactpage, $contactlimit);
+            $contactmaxPage = ceil( $contactvisiter->getTotalItemCount() / $contactlimit );
+            
         }
         /* ------------------------------------------------------- -*/
 
@@ -104,6 +113,7 @@ class HomeController extends AbstractController
             'habitats' => $habitatRepository->findAll(),
             'animals' => $animalRepository->findAll(),
             'rapport_employees' => $rapportEmployee,
+            'contactvisiters' => $contactvisiter,
             'actualUser' => $ActualUser,
             'userroles' => $userroles,
             'roleadmin' => $roleadmin,
@@ -112,6 +122,8 @@ class HomeController extends AbstractController
             'avis' => $authorisedavis,
             'maxPage' => $maxPage,
             'page' => $page,
+            'contactmaxPage' => $contactmaxPage,
+            'contactpage' => $contactpage,
         ]);
     }
 

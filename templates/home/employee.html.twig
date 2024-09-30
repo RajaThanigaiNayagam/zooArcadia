@@ -1,4 +1,8 @@
     <div class="container">
+        <!--
+        /*-------------------------------------------------------- -*/
+        /*---------To display all the employee's reports --------- -*/
+        /*-------------------------------------------------------- -*/-->
         <h1>Liste de rapport de l'employé</h1>
         <div>
             <form>
@@ -9,6 +13,7 @@
         </div>
 
         <div class="table-responsive datatable">
+            <h6>Liste de rapport de l'employé</h6> </br>
             <table class="table table-bordered border-success">
                 <thead>
                     <tr>
@@ -45,4 +50,49 @@
     
             <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau rapport</button></a>
         </div>
+    </div>
+
+    <!--
+    /*-------------------------------------------------------- -*/
+    /*------- To read all the authorised client reviews------- -*/
+    /*-------------------------------------------------------- -*/-->
+    <h1>Liste des contact de visiteurs non répondu</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="contactlimit">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="contactlimit" name="contactlimit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
+    
+    <div class="table-responsive datatable">
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>Nom de visiteur</th>
+                    <th>Email de visiteur</th>
+                    <th>Titre</th>
+                    <th>Description de contact </th>
+                    <th>Eate et heur</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for contactvisiter in contactvisiters %}
+                <tr>
+                    <td>{{ contactvisiter.nom }}</td>
+                    <td>{{ contactvisiter.email }}</td>
+                    <td>{{ contactvisiter.titre }}</td>
+                    <td>{{ contactvisiter.description}}</td>  
+                    <td>{{ contactvisiter.createdAt ? contactvisiter.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ knp_pagination_render(avis) }}
+        </div> <br>
     </div>

@@ -144,10 +144,16 @@ h1, h2 {
 .header
 {
 	/*background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/zoo.jpg);*/
-	background-image:url(../image/zoo.jpg);
-	height:150vh;
-	background-position:center;
+	background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
 	background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+	min-height:764px;
+	padding-bottom: 4em;
+	height:130vh;
+	background-position:center;
 }
 
 .table, .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
@@ -215,7 +221,7 @@ form label {
 	text-align : center;
     font-weight: bold;
 }
-.avis_section h2{
+.avis_section h2, .datatable h2{
     font-size: 1.8em;
     color: #105030;
     font-family: 'Rancho-Regular';
@@ -223,7 +229,22 @@ form label {
     font-weight: bold;
 }
 
-.avis_section h6{
+.avis_section h3, .datatable h3{
+    font-size: 1.6em;
+    color: #105030;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+.avis_section h4, .datatable h4{
+    font-size: 1.4em;
+    color: #105030;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+
+.avis_section h6, .datatable h6{
     font-size: 1.2em;
     color: #105030;
     font-family: 'Rancho-Regular';
@@ -346,6 +367,20 @@ thead{
 
 /* --------------------Responsive-ecran 1426------------------- */
 @media (max-width:1426px){
+    .header
+    {
+        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height:564px;
+        padding-bottom: 4em;
+        height:110vh;
+        background-position:center;
+    }
+    
     /* ---------------------tableau d'horaire--------------------- */
     .horaire{
         width: 30%;
@@ -361,6 +396,19 @@ thead{
 
 /* --------------------Responsive-ecran 1120------------------- */
 @media (max-width:1120px){
+    .header
+    {
+        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height:464px;
+        padding-bottom: 4em;
+        height:100vh;
+        background-position:center;
+    }
     /* ---------------------tableau d'horaire--------------------- */
     .horaire{
         width: 40%;
@@ -377,6 +425,19 @@ thead{
 
 /* -------------------- Responsive-ecran 991------------------- */
 @media (max-width:991px){
+    .header
+    {
+        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height:164px;
+        padding-bottom: 4em;
+        height:80vh;
+        background-position:center;
+    }
     /* ---------------------tableau d'horaire--------------------- */
     .horaire{
         width: 50%;
@@ -385,8 +446,6 @@ thead{
         text-align : left;
         padding: 0;
     }
-    /* ----------------------------------------------------------- */
-    
     
     /* --------------------- Nav bar header ---------------------- */
     .nav > li > a {
@@ -437,6 +496,19 @@ thead{
     
 /* --------------------Responsive-ecran 576------------------- */
 @media (max-width:576px){
+    .header
+    {
+        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height:264px;
+        padding-bottom: 4em;
+        height:70vh;
+        background-position:center;
+    }
 
     /* ---------------------tableau d'horaire--------------------- */
     .horaire{
@@ -455,8 +527,21 @@ thead{
 
 
 
-/* ----------------------Responsive-ecran 409--------------------- */
-@media (max-width:409px){
+/* ----------------------Responsive-ecran 480--------------------- */
+@media (max-width:480px){
+    .header
+    {
+        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height:164px;
+        padding-bottom: 4em;
+        height:60vh;
+        background-position:center;
+    }
     .logo{
         background-image:url(../image/zoo_logo.jpg);
         height:7vh;
@@ -483,3 +568,24 @@ thead{
 /* ----------------------------------------------------------- */
 
 
+
+
+
+
+
+/* ----------------------Responsive-ecran 320--------------------- */
+@media (max-width:320px){
+    .header
+    {
+        background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+        min-height:100px;
+        padding-bottom: 4em;
+        height:30vh;
+        background-position:center;
+    }
+}

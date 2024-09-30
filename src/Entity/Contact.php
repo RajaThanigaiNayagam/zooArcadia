@@ -29,6 +29,9 @@ class Contact
     #[ORM\Column(nullable: true)]
     private ?bool $is_read = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $email = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Contact
     public function setRead(bool $is_read): static
     {
         $this->is_read = $is_read;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     
     /**
-     * @return User[] Returns an array of Animal objects
+     * @return User[] Returns an array of User objects
      */
     public function paginateUser(int $page, int $limit): PaginationInterface
     {
@@ -47,6 +47,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
+
+        /**
+         * @return User[] Returns an User objects
+         */
+        public function findUserByEmailOrUsername(string $usernameOrEmail): ?User
+        {
+            return $this->createQueryBuilder('u')
+                ->Where('u.username = :val')
+                ->orWhere('u.email = :val')
+                ->setParameter('val', $usernameOrEmail)
+                ->orderBy('u.id', 'ASC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult()
+            ;
+        }
+
 
     //    /**
     //     * @return User[] Returns an array of User objects
