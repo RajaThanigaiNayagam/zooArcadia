@@ -146,12 +146,6 @@ h1, h2 {
 	/*background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../image/zoo.jpg);*/
 	background-image:url(../image/zoo.jpg) no-repeat 0px 0px;
 	background-size:cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-	min-height:764px;
-	padding-bottom: 4em;
 	height:130vh;
 	background-position:center;
 }
