@@ -161,6 +161,26 @@ h1, h2 {
     border-top: none !important;
 }
 
+
+
+table.contact > thead > tr > th, table.contact > tbody > tr > th, table.contact > tfoot > tr > th, table.contact > thead > tr > td, table.contact > tbody > tr > td, table.contact > tfoot > tr > td {
+    font-size: 0.9em;
+    color: #10311d;
+    text-align: justify;
+    border: solid thin;
+    padding: 5px;
+    border-top: none !important;
+}
+
+table.contact-comment > thead > tr > th {
+    font-size: 0.9em;
+    color: #10311d;
+    text-align: justify;
+    border: solid thin;
+    border-top: none !important;
+}
+
+
 .avis_section{
     background-color: white;
     margin: auto;
@@ -201,6 +221,13 @@ form label {
 	text-align : left;
 }
 
+.form-label, .form-check-label {   
+    width: 100%;
+    color: #105030;
+    margin: 0;
+	text-align : left;
+}
+
 .datatable form label, .datatable form legend {   
     width: 100%;
     color: #105030;
@@ -208,7 +235,7 @@ form label {
 	text-align : left;
 }
 
-.datatable h1, .datatable h2, .avis_section h1{
+.datatable h1, .datatable h2, .avis_section h1, .datatable-inscription h1{
     font-size: 2em;
     color: #105030;
     font-family: 'Rancho-Regular';

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/user/service')]
 class ServiceController extends AbstractController
 {
-    #[Route('/', name: 'app_user_service_index', methods: ['GET'])]
+    #[Route('/', name: 'app_user_serviceuser_index', methods: ['GET'])]
     public function index(ServiceRepository $serviceRepository, Request $request): Response
     {
         $page = $request->query->getint('page', 1);
@@ -23,7 +23,7 @@ class ServiceController extends AbstractController
         $service = $serviceRepository->paginateService($page, $limit);
         $maxPage = ceil( $service->getTotalItemCount() / $limit );
         
-        return $this->render('user/service/index.html.twig', [
+        return $this->render('user/serviceuser/index.html.twig', [
             'services' => $service,
             'maxPage' => $maxPage,
             'page' => $page,
@@ -31,10 +31,10 @@ class ServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_service_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_user_serviceuser_show', methods: ['GET'])]
     public function show(Service $service): Response
     {
-        return $this->render('user/service/show.html.twig', [
+        return $this->render('user/serviceuser/show.html.twig', [
             'service' => $service,
             'logo' => 'image\zoo logo.jpg',
         ]);

@@ -13,23 +13,22 @@
     </div>
 
     <div class="table-responsive datatable">
-        <table class="table table-bordered border-success">
+        <h1>Liste des services de notre zoo</h1>
+        <table class="contact" border="1" style="color:#105030" width="100%">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>actions</th>
+                    <th width="12%">Nom</th>
+                    <th width="76%">Description</th>
+                    <th width="12%">actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for service in services %}
                 <tr>
-                    <td>{{ service.id }}</td>
                     <td>{{ service.nom }}</td>
                     <td>{{ service.description }}</td>
                     <td>
-                        <a href="{{ path('app_user_service_show', {'id': service.id}) }}"><button class="btn btn-outline-success my-3">View</button></a>
+                        <a href="{{ path('app_user_serviceuser_show', {'id': service.id}) }}"><button class="btn btn-outline-success my-3">View</button></a>
                     </td>
                 </tr>
             {% else %}

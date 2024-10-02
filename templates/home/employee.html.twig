@@ -6,7 +6,7 @@
         <h1>Liste de rapport de l'employé</h1>
         <div>
             <form>
-                <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
+                <div style="display: inline-block; margin-right:10px;"><label for="limit">Nombre d'enregistrement</label><br></div>
                 <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="limit" name="limit"><br></div>
                 <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
             </form> 
@@ -21,7 +21,7 @@
                         <th>Nourriture</th>
                         <th>Nourriture donnée à</th>
                         <th>Quantité (en gramme)</th>
-                        <th>actions</th>
+                        <!--<th>actions</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -31,10 +31,10 @@
                         <td>{{ rapport_employee.nourriture }}</td>
                         <td>{{ rapport_employee.createdAt ? rapport_employee.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                         <td>{{ rapport_employee.quantity }}</td>
-                        <td>
+                        <!-- <td>
                             <a href="{{ path('app_employee_rapport_show', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">View</button></a>
                             <a href="{{ path('app_employee_rapport_edit', {'id': rapport_employee.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
-                        </td>
+                        </td>-->
                     </tr>
                 {% else %}
                     <tr>
@@ -47,26 +47,24 @@
             <div class="pagination">
                 {{ knp_pagination_render(rapport_employees) }}
             </div> <br>
-    
-            <a href="{{ path('app_employee_rapport_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau rapport</button></a>
         </div>
     </div>
 
     <!--
     /*-------------------------------------------------------- -*/
-    /*------- To read all the authorised client reviews------- -*/
+    /*-------To read all the authorised client contacts------- -*/
     /*-------------------------------------------------------- -*/-->
     <h1>Liste des contact de visiteurs non répondu</h1>
-    <div>
+    <!--<div>
         <form>
             <div style="display: inline-block; margin-right:10px;"><label for="contactlimit">Nombre d'enregistrement</label><br></div>
             <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="contactlimit" name="contactlimit"><br></div>
             <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
         </form> 
-    </div>
+    </div>-->
     
     <div class="table-responsive datatable">>
-        <h6>Liste des contact de visiteurs non répondu</h6>
+        <h6>Liste des contact de visiteurs non répondu</h6> </br>
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
@@ -88,12 +86,12 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">Aucun enregistrement trouvé</td>
+                    <td colspan="5">Toutes les questions de contact ont reçu une réponse.  <a href="{{ path('app_employee_contact_show') }}">Pour voir tous les contacts</td></a>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-        <div class="pagination">
+        <!--<div class="pagination">
             {{ knp_pagination_render(avis) }}
-        </div> <br>
+        </div> <br>-->
     </div>

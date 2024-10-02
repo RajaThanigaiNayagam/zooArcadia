@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de contace{% endblock %}
+
+{% block body %}
+    <h1>Page de contact</h1>
+    <!--
+    /*-------------------------------------------------------- -*/
+    /*-------To read all the authorised client contacts------- -*/
+    /*-------------------------------------------------------- -*/-->
+    <h1>Liste des contact de visiteurs non répondu</h1>
+    <div>
+        <form>
+            <div style="display: inline-block; margin-right:10px;"><label for="contactlimit">Nombre d'enregistrement</label><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input style="width: 2em" type="text" id="contactlimit" name="contactlimit"><br></div>
+            <div style="display: inline-block; margin-right:10px;"><input type="submit" value="Submit"></div>
+        </form> 
+    </div>
+    
+    <div class="table-responsive datatable">
+        <h6>Liste des contact de visiteurs non répondu</h6> </br>
+        <table class="contact" border="1" style="color:#105030" width="100%">
+            <thead>
+                <tr>
+                    <th width="13%">Nom de visiteur</th>
+                    <th width="10%">Email de visiteur</th>
+                    <th width="10%">Titre</th>
+                    <th width="13%">Répondu ou pas</th>
+                    <th width="40%">Description de contact </th>
+                    <th width="10%">Date et heur</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for contactvisiter in contacts %}
+                <tr>
+                    <td>{{ contactvisiter.nom }}</td>
+                    <td>{{ contactvisiter.email }}</td>
+                    <td>{{ contactvisiter.titre }}</td>
+                    <td>
+                        <form action="{{ path('app_employee_contact_repliedOrNot', {'id': contactvisiter.id}) }}" method="POST">
+                            {% if contactvisiter.isRead() %}
+                                <div style="display: inline-block; margin-right:5px;"> <input type="checkbox" id="isread" name="isread" checked /></div>
+                            {% else %}
+                                <div style="display: inline-block; margin-right:5px;"> <input type="checkbox" id="isread" name="isread" /></div>
+                            {% endif %}
+                            <div style="display: inline-block; margin-right:5px;"><input type="submit" value="Répondre"></div>
+                        </form>
+                    </td>
+                    <td>{{ contactvisiter.description}}</td>  
+                    <td>{{ contactvisiter.createdAt ? contactvisiter.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" style="color:#105030"  border="1">Toutes les questions de contact ont reçu une réponse.  <a href="{{ path('app_employee_contact_show') }}">Pour voir tous les contacts</td></a>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ knp_pagination_render(contacts) }}
+        </div> <br>
+    </div>
+    
+{% endblock %}

@@ -30,6 +30,19 @@ class ContactRepository extends ServiceEntityRepository
         );
     }
 
+    /**
+     * @return Contacet[] Returns an array of Contace objects
+     */
+    public function paginateNonRepliedContact(int $page, int $limit): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->createQueryBuilder('c')
+            ->andWhere('c.is_read = true'),
+            $page,
+            $limit
+        );
+    }
+
     //    /**
     //     * @return Contact[] Returns an array of Contact objects
     //     */

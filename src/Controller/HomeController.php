@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Avis;
 use App\Entity\AnimalImage;
+use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Repository\AvisRepository;
 use App\Repository\AnimalRepository;
 use App\Repository\HoraireRepository;
@@ -79,7 +81,10 @@ class HomeController extends AbstractController
         /*-------------------------------------------------------- -*/
         /*--------display visiter reviews and contact msg -------- -*/
         /*-------------------------------------------------------- -*/
+        $contactvisiter = '';
         $rapportEmployee = '';
+        $contactmaxPage = 0;
+        $contactpage = 0;
         if ( $roleemployee ==  "ROLE_EMPLOYEE" ){
             $ActualUser = $this->getUser()->getId() ;
 
@@ -97,7 +102,7 @@ class HomeController extends AbstractController
             if ( $request->query->getint('contactlimit') ){ $contactlimit = $request->query->getint('contactlimit'); }else{$contactlimit = $request->query->getint('contactlimit', 3);}
             
             //To get all the contact message sent by the visiter
-            $contactvisiter = $contactRepository->paginateContact($contactpage, $contactlimit);
+            $contactvisiter = $contactRepository->paginateNonRepliedContact($contactpage, $contactlimit);
             $contactmaxPage = ceil( $contactvisiter->getTotalItemCount() / $contactlimit );
             
         }
@@ -146,4 +151,45 @@ class HomeController extends AbstractController
             'referer' => $referer,
         ]);
     }
+    
+    #[Route('/employee/contact/', name: 'app_employee_contact_show', methods: ['GET'])]
+    public function employee_contact(ContactRepository $contactRepository, Request $request): Response
+    {
+        $page = $request->query->getint('page', 1);
+        if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
+        
+        $contact = $contactRepository->paginateContact($page, $limit);
+        $maxPage = ceil( $contact->getTotalItemCount() / $limit );
+
+        return $this->render('employee/contact/index.html.twig', [
+            'contacts' => $contact,
+            'maxPage' => $maxPage,
+            'page' => $page,
+        ]);
+    }
+
+    #[Route('/employee/contact/{id}', name: 'app_employee_contact_repliedOrNot', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        //dd($form->getData()->isRead());
+        //dd($form->get('is_read')->getData());
+        //dd($form->get('Read'));
+            if ( $request->request->get('isread') == "on"){
+                $contact->setRead(true);
+            } else {
+                $contact->setRead(false);
+            };
+            //dd($contact);
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
+        return $this->redirectToRoute('app_employee_contact_show', [], Response::HTTP_SEE_OTHER);
+        /*return $this->render('employee/avis/edit.html.twig', [
+            'avi' => $avi,
+            'form' => $form,
+        ]);*/
+    }
+
 }

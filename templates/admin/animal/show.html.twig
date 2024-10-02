@@ -33,8 +33,7 @@
                     <h3>Image des animal</h3>
                     <tr>
                     {% for animalImage in animal.animalImages %}
-                        <th>{{ animalImage.getImageData() }}</th>
-                        <th><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="200" height="300" tyle=""></th>
+                        <td><img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="300" height="300" tyle=""></td>
                     {% endfor %}
                     </tr>
                 </tbody>

@@ -35,7 +35,7 @@
                                 <a class="nav-link" href="{{ path('app_user_habitat_index') }}">Habitat</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_user_service_index') }}">Services</a>
+                                <a class="nav-link" href="{{ path('app_user_serviceuser_index') }}">Services</a>
                             </li>
                             <!--<li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_user_avis_new') }}">Donnez votre avis</a>
@@ -56,8 +56,8 @@
                                         <li><a class="dropdown-item" href="{{ path('app_admin_race_index') }}">Race d'animaux</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_zooservice_index') }}">Services</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_horaire_index') }}">Horaire</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ path('app_admin_register') }}">Inscription</a></li>
+                                        <!--<li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_register') }}">Inscription</a></li> -->
                                     </ul>
                                 </li>
                             {% endif %}
@@ -83,7 +83,8 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ path('app_employee_rapport_index') }}">Les Rapports</a></li>
-                                    <li><a class="dropdown-item" href="{{ path('app_employee_avis_index') }}">Avis clients</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_employee_avis_index') }}">Avis visiteur</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_employee_contact_show') }}">Contact visiteur</a></li>
                                     <li><a class="dropdown-item" href="{{ path('app_employee_service_index') }}">Les services au zoo</a></li>
                                 </ul>
                             </li>
