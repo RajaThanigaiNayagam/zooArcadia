@@ -48,7 +48,6 @@ class HabitatController extends AbstractController
         return $this->render('admin/habitat/new.html.twig', [
             'habitat' => $habitat,
             'form' => $form,
-            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 
@@ -57,7 +56,6 @@ class HabitatController extends AbstractController
     {
         return $this->render('admin/habitat/show.html.twig', [
             'habitat' => $habitat,
-            'logo' => 'image\zoo logo.jpg',
         ]);
     }
 

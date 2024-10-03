@@ -3,7 +3,7 @@
 {% block title %}Liste de rapport des l'employé{% endblock %}
 
 {% block body %}
-    <h1>Liste de rapport de l'employé</h1>
+    <h1>Liste de rapport de l'employé - {{ app.user.userIdentifier  }}</h1>
     <div>
         <form>
             <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
@@ -13,14 +13,15 @@
     </div>
 
     <div class="table-responsive datatable">
-        <table class="table table-bordered border-success">
+        <h6>Liste de rapport de l'employé</h6> </br>
+        <table class="contact" border="1" style="color:#105030" width="100%">
             <thead>
                 <tr>
-                    <th>Animal</th>
-                    <th>Nourriture</th>
-                    <th>Nourriture donnée à</th>
-                    <th>Quantité (en gramme)</th>
-                    <th>actions</th>
+                    <th width="20%">Animal</th>
+                    <th width="20%">Nourriture</th>
+                    <th width="20%">Nourriture donnée à</th>
+                    <th width="20%">Quantité (en gramme)</th>
+                    <th width="20%">actions</th>
                 </tr>
             </thead>
             <tbody>

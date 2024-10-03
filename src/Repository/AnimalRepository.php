@@ -30,6 +30,21 @@ class AnimalRepository extends ServiceEntityRepository
         );
     }
 
+
+    /**
+    * @return Animal[] Returns an array of Animal objects
+    */
+    public function findAnimalByHabitat($value): ?Animal
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.habitat_id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     //    /**
     //     * @return Animal[] Returns an array of Animal objects
     //     */

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animal de l'habitat{% endblock %}
+
+{% block body %}
+    <h1>Animal de l'habitat</h1>
+    <div class="row habitatrow">
+        {% for animals in habitats.getAnimal() %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card shadow">
+                    {{ animals.prenom() }}
+                    {% if animals.getAnimalImages|length > 0 %}
+                        {% for animalimage in animals.getAnimalImages() %}
+                            <a href="{{ path('app_user_animal_show', {'id': animalimage.id}) }}"><img src="{{ "..\\..\\" ~ animalimage.getImageData() }}" id="animalclick" class="img-fluid"></a>
+                            <div class="card-body">
+                                <div class="card-text">{{ animals.etat }}</div>
+                                <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ animals.prenom }}</h5>
+                            <div class="card-text">{{ animals.etat }}</div>
+                            <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
+                        </div>
+                    {% endif %} 
+                </div>
+            </div>
+        {% endfor %}
+
+        <a href="{{ path('app_home') }}"><button class="btn btn-outline-light my-3">Retour à la page d'accueil</button></a>
+    </div>
+{% endblock %}

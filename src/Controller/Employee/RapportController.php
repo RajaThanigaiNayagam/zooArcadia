@@ -18,6 +18,7 @@ class RapportController extends AbstractController
     public function index(RapportEmployeeRepository $rapportEmployeeRepository, Request $request): Response
     {
         $ActualUser = $this->getUser()->getId() ;
+        $ActualUserName = $this->getUser()->getUsername() ;
 
         //pagination - get current page number and number of records to be displayed in a page from method POST or GET
         $page = $request->query->getint('page', 1);
@@ -28,6 +29,7 @@ class RapportController extends AbstractController
         
         return $this->render('employee/rapport/index.html.twig', [
             'rapport_employees' => $rapportEmployee,
+            'ActualUserName' => $ActualUserName,
             'maxPage' => $maxPage,
             'page' => $page,
         ]);

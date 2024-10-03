@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les services disponibles à notre zoo{% endblock %}
+{% block title %}Les image de services de zoo{% endblock %}
 
 {% block body %}
-    <h1>Les services disponibles à notre zoo</h1>
+    <h1>Les image de services de zoo</h1>
     <div>
         <form>
             <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
@@ -12,25 +12,24 @@
         </form> 
     </div>
 
+
+
     <div class="table-responsive datatable">
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>actions</th>
+                    <th>Chemin de l'image</th>
                 </tr>
             </thead>
             <tbody>
-                {% for service in services %}
+                {% for serviceimage in serviceimages %}
                     <tr>
-                        <td>{{ service.id }}</td>
-                        <td>{{ service.nom }}</td>
-                        <td>{{ service.description }}</td>
+                        <td>{{ serviceimage.id }}</td>
+                        <td>{{ serviceimage.imageData }}</td>
                         <td>
-                            <a href="{{ path('app_admin_zooservice_show', {'id': service.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                            <a href="{{ path('app_admin_zooservice_edit', {'id': service.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                            <a href="{{ path('app_admin_zooserviceimage_show', {'id': serviceimage.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                            <a href="{{ path('app_admin_zooserviceimage_edit', {'id': serviceimage.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                         </td>
                     </tr>
                 {% else %}
@@ -42,10 +41,9 @@
         </table>
 
         <div class="pagination">
-            {{ knp_pagination_render(services) }}
+            {{ knp_pagination_render(serviceimages) }}
         </div>
 
-
-        <a href="{{ path('app_admin_zooservice_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau service</button></a>
+        <a href="{{ path('app_admin_zooserviceimage_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau service image</button></a>
     </div>
 {% endblock %}

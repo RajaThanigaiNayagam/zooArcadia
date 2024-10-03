@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Avis;
+use App\Entity\Habitat;
 use App\Entity\AnimalImage;
 use App\Entity\Contact;
 use App\Form\ContactType;
@@ -86,15 +87,15 @@ class HomeController extends AbstractController
         $contactmaxPage = 0;
         $contactpage = 0;
         if ( $roleemployee ==  "ROLE_EMPLOYEE" ){
-            $ActualUser = $this->getUser()->getId() ;
 
+            $ActualUserid = $this->getUser()->getId() ;
             //To get all the employee's reports
             //pagination - get current page number and number of records to be displayed in a page from method POST or GET
             $page = $request->query->getint('page', 1);
             if ( $request->query->getint('limit') ){ $limit = $request->query->getint('limit'); }else{$limit = $request->query->getint('limit', 3);}
             
             //To execute the SQL query to get all the concerned employee's report
-            $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUser);
+            $rapportEmployee = $rapportEmployeeRepository->paginateRapportDeEmployee($page, $limit, $ActualUserid);
             $maxPage = ceil( $rapportEmployee->getTotalItemCount() / $limit );
 
             //pagination - get current page number and number of records to be displayed in a page from method POST or GET
@@ -192,4 +193,23 @@ class HomeController extends AbstractController
         ]);*/
     }
 
+    #[Route('/home/habitat/{id}', name: 'app_home_habitat_show', methods: ['GET'])]
+    public function showAnimalDeHabitat(Habitat $habitat, Request $request): Response
+    {
+        /*$animalimageclique = $animalimage->getNbClique();
+        //$animalimageclique = $animalimage[0]->getNbClique();
+        //if ( ! $animalimageclique ) {$animalimageclique = 0;};
+        
+        ++$animalimageclique;
+        $animalimage->setNbClique($animalimageclique);
+        $entityManager->persist($animalimage);
+        $entityManager->flush(); */
+        //dd($habitat);
+        $referer = $request->headers->get('referer');
+
+        return $this->render('home/habitat/show.html.twig', [
+            'habitats' => $habitat,
+            'referer' => $referer,
+        ]);
+    }
 }

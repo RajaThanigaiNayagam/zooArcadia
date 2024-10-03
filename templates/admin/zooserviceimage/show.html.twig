@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Le services de zoo{% endblock %}
+{% block title %}Le services image de zoo{% endblock %}
 
 {% block body %}
-    <h1>Le services de zoo</h1>
+    <h1>Le services image de zoo</h1>
 
     <div class="table-responsive datatable">
         <table class="table">
@@ -23,10 +23,10 @@
             </tbody>
         </table>
 
-        <a href="{{ path('app_admin_zooservice_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
+        <a href="{{ path('app_admin/zooserviceimage_index') }}"><button class="btn btn-outline-success my-3">Retour à la liste</button></a>
 
-        <a href="{{ path('app_admin_zooservice_edit', {'id': service.id}) }}"><button class="btn btn-outline-success my-3">Modifier</button></a>
+        <a href="{{ path('app_admin/zooserviceimage_edit', {'id': service.id}) }}"><button class="btn btn-outline-success my-3">Modifier</button></a>
 
-        {{ include('admin/zooservice/_delete_form.html.twig') }}
+        {{ include('admin/zooserviceimage/_delete_form.html.twig') }}
     </div>
 {% endblock %}

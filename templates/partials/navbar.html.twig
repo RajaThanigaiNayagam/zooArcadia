@@ -49,15 +49,17 @@
                                         Admin
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ path('app_admin_user_index') }}">User</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('app_admin_habitat_index') }}">Habitat</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_animal_index') }}">Animal</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_animal_image_index') }}">Images d'animaux</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_race_index') }}">Race d'animaux</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_habitat_index') }}">Habitats des animaux</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_habitat_image_index') }}">Image d'Habitat</a></li>
                                         <li><a class="dropdown-item" href="{{ path('app_admin_zooservice_index') }}">Services</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('app_admin_horaire_index') }}">Horaire</a></li>
-                                        <!--<li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ path('app_admin_register') }}">Inscription</a></li> -->
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_zooserviceimage_index') }}">Images de Services</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_horaire_index') }}">Horaire de zoo</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_user_index') }}">Personnel du zoo</a></li>
+                                        <!--<li><a class="dropdown-item" href="{{ path('app_admin_register') }}">Inscription</a></li> -->
                                     </ul>
                                 </li>
                             {% endif %}

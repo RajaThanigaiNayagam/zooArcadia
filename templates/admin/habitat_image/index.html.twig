@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des images des animaux de notre zoo{% endblock %}
+{% block title %}Image index{% endblock %}
 
 {% block body %}
-    <h1>Liste des images des animaux de notre zoo</h1>
+    <h1>Image index</h1>
     <div>
         <form>
             <div style="display: inline-block; margin-right:10px;"><label for="fname">Nombre d'enregistrement</label><br></div>
@@ -16,23 +16,23 @@
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
-                    <th>Animal</th>
+                    <th>Id</th>
                     <th>Chemin de l'image</th>
                     <th>image</th>
                     <th>actions</th>
                 </tr>
             </thead>
             <tbody>
-            {% for animal_image in animal_images %}
+            {% for image in habitatimages %}
                 <tr>
-                    <td>{{ animal_image.getAnimal() }}</td>
-                    <td>{{ animal_image.imageData }}</td>
+                    <td>{{ image.id }}</td>
+                    <td>{{ image.imageData }}</td>
                     <td>
-                        <img src="{{ asset( animal_image.imageData ) }}" alt="" class="img-rounded" width ="100" height="100" tyle="">
+                        <img src="{{ asset( image.getImageData() ) }}" alt="" class="img-rounded" width ="100" height="100" tyle="">
                     </td>
                     <td>
-                        <a href="{{ path('app_admin_animal_image_show', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">View</button></a>
-                        <a href="{{ path('app_admin_animal_image_edit', {'id': animal_image.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
+                        <a href="{{ path('app_admin_habitat_image_show', {'id': image.id}) }}"><button class="btn btn-outline-success">View</button></a>
+                        <a href="{{ path('app_admin_habitat_image_edit', {'id': image.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
                     </td>
                 </tr>
             {% else %}
@@ -42,12 +42,7 @@
             {% endfor %}
             </tbody>
         </table>
-        
-        <div class="pagination">
-            {{ knp_pagination_render(animal_images) }}
-        </div> <br>
-        
-        <a href="{{ path('app_admin_animal_image_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
+
+        <a href="{{ path('app_admin_habitat_image_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
-    
 {% endblock %}

@@ -40,7 +40,7 @@
                     </td>
                     <td>
                     {% for animalImage in animal.animalImages %}
-                        <img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="100" height="100" tyle="">
+                        <img src="{{ asset( animalImage.getImageData() ) }}" alt="" class="rounded" width ="100" height="100" style="">
                     {% endfor %}
                     </td>
                     <td>
@@ -50,7 +50,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no records found</td>
+                    <td colspan="4">Aucun enregistrement trouvé</td>
                 </tr>
             {% endfor %}
             </tbody>

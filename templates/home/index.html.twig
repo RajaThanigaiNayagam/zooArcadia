@@ -11,27 +11,26 @@
     {% if app.user %}
         <!-- --------------Utilisateur connecté-------------- -->
         <h1>Page d'accueil de Personnel de ZOO ARCADIA seulement.</h1> 
-        Vous êtes connecté en tant que <b>{{ app.user.userIdentifier }}</b>, et son rôle est 
-        {% for role in app.user.roles %}
-            <b>{{ role }}</b>
-        {% endfor %}
+        <h4>Vous êtes  <b>{{ app.user.userIdentifier }}.  </b></h4>
         {% if roleadmin %}
             <!-- Page d'accueil d'admin -->
+            <h4>Vous êtes un administrateur de site web du zoo</h4>
             <div>
                 {{ include('home/admin.html.twig') }}
             </div>
         {% elseif roleemployee %}
             <!-- Page d'accueil d'veterinaire -->
+            <h4>Vous êtes un employé du zoo</h4>
             <div>
                 {{ include('home/employee.html.twig') }}
             </div>
         {% elseif roleveterinaire %}
             <!-- Page d'accueil d'employee -->
+            <h4>Vous êtes un vétérinaire du zoo</h4>
             <div>
                 {{ include('home/veterinaire.html.twig') }}
             </div>
-        {% endif %}
-    {% else %}
+        {% endif %}    {% else %}
         <h1>Page d'accueil de Visiteur de ZOO ARCADIA.</h1> 
 
         <!-- -------------- ---------------------------------- -->
@@ -68,36 +67,26 @@
         <!-- -------------- ---------------------------------- -->
         <!-- -------------- Habitats des animaux-------------- -->
         <!-- -------------- ---------------------------------- -->
-        <div class="datahabitat"><br>
-            {% for habitat in habitats %}
-                <div class="row habitatrow">Les animaux de l'habitat  &nbsp;&nbsp;&nbsp;&nbsp;  {{ habitat.nom }}
-                    <div class="row habitatrow">
-                        {% for animals in habitat.getAnimal() %}
-                            <div class="col-sm-6 col-md-4 col-lg-3">
-                                <div class="card shadow">
-                                    {{ animals.prenom() }}
-                                    {% if animals.getAnimalImages|length > 0 %}
-                                        {% for animalimage in animals.getAnimalImages() %}
-                                            <a href="{{ path('app_user_animal_show', {'id': animalimage.id}) }}"><img src="{{ animalimage }}" id="animalclick" class="img-fluid"></a>
-                                            <div class="card-body">
-                                                <div class="card-text">{{ animals.etat }}</div>
-                                                <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
-                                            </div>
-                                        {% endfor %}
-                                    {% else %}
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ animals.prenom }}</h5>
-                                            <div class="card-text">{{ animals.etat }}</div>
-                                            <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
-                                        </div>
-                                    {% endif %} 
-                                </div>
+        <div class="datahabitat" id="totalhabitat" value="{{ habitats|length }}"></div> <br>
+        {% set nbhabitat = 0 %}
+        {% for habitat in habitats %}
+            <div class="habitatrow">
+                    {% for habitatimage in habitat.getImage() %}
+                        <a href="{{ path('app_home_habitat_show', {'id': habitat.id}) }}">
+                            <div class="row">
+                                <div class="col">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</div>
+                                <div class="col"><img src="{{ habitatimage.getImageData() }}" class="img-fluid rounded" width ="200" height="200"></div>
                             </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div> 
+                        </a></br></br>
+                    {% else %}
+                        <div class="row">
+                                <div class="col"><a href="{{ path('app_home_habitat_show', {'id': habitat.id}) }}">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</a></div>
+                                <div class="col"></div>
+                            </div></br></br>
+                    {% endfor %}
+            </div>
+        {% endfor %}
+    
 
         
         <!-- -------------- ---------------------------------- -->

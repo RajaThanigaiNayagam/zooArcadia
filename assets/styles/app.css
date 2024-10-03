@@ -133,6 +133,14 @@ h1, h2 {
     font-weight: bold;
 }
 
+a {
+    font-size: 1.2em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+
 .flash-message {
     font-size: 1em;
     color: #fff;
@@ -327,6 +335,7 @@ thead{
 .habitatrow{
 	margin: auto;
     background-color: #118A61;
+    width: 60%;
     margin: auto;
 	text-align : center;
     font-weight: bold;
@@ -459,6 +468,20 @@ thead{
         height:80vh;
         background-position:center;
     }
+    /* --------------------- tableau d'liste --------------------- */
+    .datatable{
+        background-color: white;
+        margin: auto;
+        width: 95%;
+        text-align : center;
+        font-weight: bold;
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    table {
+        margin : 0;
+    }
     /* ---------------------tableau d'horaire--------------------- */
     .horaire{
         width: 50%;
@@ -530,7 +553,17 @@ thead{
         height:70vh;
         background-position:center;
     }
-
+    /* --------------------- tableau d'liste --------------------- */
+    .datatable{
+        background-color: white;
+        margin: auto;
+        width: 100%;
+        text-align : center;
+        font-weight: bold;
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
     /* ---------------------tableau d'horaire--------------------- */
     .horaire{
         width: 60%;

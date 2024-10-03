@@ -14,8 +14,8 @@ class Image
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $image_data;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_data;
 
     #[ORM\ManyToOne(inversedBy: 'image')]
     private ?Habitat $habitat = null;

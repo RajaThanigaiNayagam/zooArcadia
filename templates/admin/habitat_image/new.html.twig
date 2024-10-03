@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouvel habitat Image{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel habitat Image</h1>
+
+    <div class="datatable">
+        {{ include('admin/habitat_image/_form.html.twig') }}
+
+        <a href="{{ path('app_admin_habitat_image_index') }}"<button class="btn btn-outline-success my-3">Retour à la liste</button></a>
+    </div>
+{% endblock %}

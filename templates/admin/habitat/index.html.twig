@@ -16,20 +16,24 @@
         <table class="table table-bordered border-success">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Commentaire_habitat</th>
+                    <th>Images d'habitat</th>
                     <th>actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for habitat in habitats %}
                 <tr>
-                    <td>{{ habitat.id }}</td>
                     <td>{{ habitat.nom }}</td>
                     <td>{{ habitat.description }}</td>
                     <td>{{ habitat.commentaireHabitat }}</td>
+                    <td>
+                        {% for habitatimage in habitat.getImage() %}
+                                <img src="{{ asset( habitatimage.getImageData() ) }}" alt="" class="img-rounded" width ="120" height="120" tyle="">
+                        {% endfor %}
+                    </td>
                     <td>
                         <a href="{{ path('app_admin_habitat_show', {'id': habitat.id}) }}"><button class="btn btn-outline-success">View</button></a>
                         <a href="{{ path('app_admin_habitat_edit', {'id': habitat.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
