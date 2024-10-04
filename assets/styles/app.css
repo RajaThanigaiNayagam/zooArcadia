@@ -49,7 +49,7 @@ body {
 }
 
 .navbar-brand-div {
-    float: left;
+    /*float: left;*/
     display: inline-block;
 }
 
@@ -81,9 +81,6 @@ body {
     background-color: #118A61;
 }
 
-.navbar, .navbar .navbar-brand, .navbar .navbar-nav {
-    /*background-color: #5ab645;*/
-}
 .collapse {
     text-align: center;
     margin: 0;
@@ -369,7 +366,7 @@ thead{
     border-radius: 1em;
     border: solid thin;
     width: 90%;
-    padding-top: 100em%;
+    padding-top: 100eem;
 }
 
 .card {

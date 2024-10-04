@@ -40,7 +40,7 @@ final class ZooserviceimageController extends AbstractController{
             $entityManager->persist($serviceimage);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin/zooserviceimage_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_zooserviceimage_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/zooserviceimage/new.html.twig', [
@@ -83,6 +83,6 @@ final class ZooserviceimageController extends AbstractController{
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_admin/zooserviceimage_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_zooserviceimage_index', [], Response::HTTP_SEE_OTHER);
     }
 }

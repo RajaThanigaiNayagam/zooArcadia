@@ -18,7 +18,8 @@
             <thead>
                 <tr>
                     <th width="12%">Nom</th>
-                    <th width="76%">Description</th>
+                    <th width="60%">Description</th>
+                    <th width="16%">Image de service</th>
                     <th width="12%">actions</th>
                 </tr>
             </thead>
@@ -27,6 +28,11 @@
                 <tr>
                     <td>{{ service.nom }}</td>
                     <td>{{ service.description }}</td>
+                    <td>
+                        {% for servicesimage in service.getServiceImages() %}
+                                <img src="{{ asset( servicesimage.getImageData() ) }}" alt="" class="img-rounded" width ="120" height="120" tyle="">
+                        {% endfor %}
+                    </td>
                     <td>
                         <a href="{{ path('app_user_serviceuser_show', {'id': service.id}) }}"><button class="btn btn-outline-success my-3">View</button></a>
                     </td>

@@ -20,6 +20,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Chemin de l'image</th>
+                    <th>Image de service</th>
+                    <th>action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +29,9 @@
                     <tr>
                         <td>{{ serviceimage.id }}</td>
                         <td>{{ serviceimage.imageData }}</td>
+                        <td>
+                            <img src="{{ asset( serviceimage.getImageData() ) }}" alt="" class="img-rounded" width ="120" height="120" tyle="">
+                        </td>
                         <td>
                             <a href="{{ path('app_admin_zooserviceimage_show', {'id': serviceimage.id}) }}"><button class="btn btn-outline-success">View</button></a>
                             <a href="{{ path('app_admin_zooserviceimage_edit', {'id': serviceimage.id}) }}"><button class="btn btn-outline-success">Modifier</button></a>
