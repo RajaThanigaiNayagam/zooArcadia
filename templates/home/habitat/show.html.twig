@@ -3,15 +3,37 @@
 {% block title %}Animal de l'habitat{% endblock %}
 
 {% block body %}
+    {#  #}
     <h1>Animal de l'habitat</h1>
     <div class="row habitatrow">
+        {#  #}
+        {% for habitatimage in habitats.getImage() %}
+                <div class="row  homehabitatrow">
+                    <div class="col  homehabitatcol"><p>Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitats.nom }}</p></div>
+                    {% if habitatimage.getImageData()|slice(0, 5)|lower == "image" %}
+                        <div class="col  homehabitatcol"><img src="{{ "..\\..\\" ~ habitatimage.getImageData() }}" class="img-fluid rounded" width ="150em" height="150em"></div>
+                    {% else %}
+                        <div class="col  homehabitatcol"><img src="{{ habitatimage.getImageData() }}" class="img-fluid rounded" width ="150em" height="150em"></div>
+                    {% endif %}
+                </div>
+            </a></br></br>
+        {% else %}
+            <div class="row homehabitatrow" style="margin-top: 50%;" >
+                    <div class="col  homehabitatcol">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</div>
+                    <div class="col  homehabitatcol"></div>
+                </div></br></br>
+        {% endfor %}</br></br>
         {% for animals in habitats.getAnimal() %}
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card shadow">
                     {{ animals.prenom() }}
                     {% if animals.getAnimalImages|length > 0 %}
                         {% for animalimage in animals.getAnimalImages() %}
-                            <a href="{{ path('app_user_animal_show', {'id': animalimage.id}) }}"><img src="{{ "..\\..\\" ~ animalimage.getImageData() }}" id="animalclick" class="img-fluid"></a>
+                            {% if animalimage.getImageData()|slice(0, 5)|lower == "image" %}
+                                <a href="{{ path('app_user_animal_show', {'id': animalimage.id}) }}"><img src="{{ "..\\..\\" ~ animalimage.getImageData() }}" id="animalclick" class="img-fluid"></a>
+                            {% else %}
+                                <a href="{{ path('app_user_animal_show', {'id': animalimage.id}) }}"><img src="{{ animalimage.getImageData() }}" id="animalclick" class="img-fluid"></a>
+                            {% endif %}
                             <div class="card-body">
                                 <div class="card-text">{{ animals.etat }}</div>
                                 <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>

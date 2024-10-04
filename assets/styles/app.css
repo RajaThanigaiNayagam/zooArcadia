@@ -142,11 +142,13 @@ a {
 }
 
 .flash-message {
-    font-size: 1em;
+    font-size: 1.2em;
     color: #fff;
     font-family: 'Rancho-Regular';
+    margin: auto;
 	text-align : center;
     font-weight: bold;
+
 }
 
 .header
@@ -335,10 +337,39 @@ thead{
 .habitatrow{
 	margin: auto;
     background-color: #118A61;
-    width: 60%;
+    width: 70%;
     margin: auto;
 	text-align : center;
     font-weight: bold;
+}
+
+.habitatrow{
+	margin: auto;
+    background-color: #118A61;
+    width: 70%;
+    margin: auto;
+	text-align : center;
+    font-weight: bold;
+}
+
+.homehabitatrow{
+	margin: auto;
+    width: 90%;
+    margin: auto;
+	text-align : center;
+    font-weight: bold;
+}
+
+.homehabitatcol{
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+    border-radius: 1em;
+    border: solid thin;
+    width: 90%;
+    padding-top: 100em%;
 }
 
 .card {

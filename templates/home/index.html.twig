@@ -67,25 +67,28 @@
         <!-- -------------- ---------------------------------- -->
         <!-- -------------- Habitats des animaux-------------- -->
         <!-- -------------- ---------------------------------- -->
-        <div class="datahabitat" id="totalhabitat" value="{{ habitats|length }}"></div> <br>
-        {% set nbhabitat = 0 %}
-        {% for habitat in habitats %}
-            <div class="habitatrow">
-                    {% for habitatimage in habitat.getImage() %}
-                        <a href="{{ path('app_home_habitat_show', {'id': habitat.id}) }}">
-                            <div class="row">
-                                <div class="col">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</div>
-                                <div class="col"><img src="{{ habitatimage.getImageData() }}" class="img-fluid rounded" width ="200" height="200"></div>
-                            </div>
-                        </a></br></br>
-                    {% else %}
-                        <div class="row">
-                                <div class="col"><a href="{{ path('app_home_habitat_show', {'id': habitat.id}) }}">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</a></div>
-                                <div class="col"></div>
-                            </div></br></br>
-                    {% endfor %}
-            </div>
-        {% endfor %}
+        <div class="habitatrow">
+            <h1>Habitats des animaux</h1> 
+            {% for habitat in habitats %}
+                {% for habitatimage in habitat.getImage() %}
+                    <a href="{{ path('app_home_habitat_show', {'id': habitat.id}) }}">
+                        <div class="row  homehabitatrow">
+                            <div class="col  homehabitatcol" ></br>Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</div>
+                            {% if habitatimage.getImageData()|slice(0, 5)|lower == "image" %}
+                                <div class="col  homehabitatcol"><img src="{{ "..\\..\\" ~ habitatimage.getImageData() }}" class="img-fluid rounded" width ="150em" height="150em"></div>
+                            {% else %}
+                                <div class="col  homehabitatcol"><img src="{{ habitatimage.getImageData() }}" class="img-fluid rounded" width ="150em" height="150em"></div>
+                            {% endif %}
+                        </div>
+                    </a></br></br>
+                {% else %}
+                    <div class="row homehabitatrow">
+                            <div class="col  homehabitatcol"><a href="{{ path('app_home_habitat_show', {'id': habitat.id}) }}">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</a></div>
+                            <div class="col  homehabitatcol"></div>
+                        </div></br></br>
+                {% endfor %}
+            {% endfor %}
+        </div>
     
 
         
