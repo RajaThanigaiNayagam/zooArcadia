@@ -63,7 +63,7 @@ J'ai déployé mon projet dans Heroku dans le lien suivant :-
 https://git.heroku.com/zooarcadia-bretagne.git
 
 et l'adresse du site Web du Zoo ARCADIA est :-
-https://zooarcadia-bretagne-4287ac627e07.herokuapp.com/home
+https://zooarcadia-bretagne-4287ac627e07.herokuapp.com
 
          
 Résumé du projet

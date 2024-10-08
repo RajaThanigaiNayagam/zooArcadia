@@ -9,19 +9,23 @@
         {#  #}
         {% for habitatimage in habitats.getImage() %}
                 <div class="row  homehabitatrow">
-                    <div class="col  homehabitatcol"><p>Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitats.nom }}</p></div>
+                    <div class="col  homehabitatcol">
+                        <h5>Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitats.nom }}</h5>
+                        <h6>Description : {{ habitats.description }}</h6>
+                        <h6>Commentaire : {{ habitats.getCommentaireHabitat() }}</h6>
+                    </div>
                     {% if habitatimage.getImageData()|slice(0, 5)|lower == "image" %}
-                        <div class="col  homehabitatcol"><img src="{{ "..\\..\\" ~ habitatimage.getImageData() }}" class="img-fluid rounded" width ="150em" height="150em"></div>
+                        <div class="col  homehabitatcol"><img src="{{ "..\\..\\" ~ habitatimage.getImageData() }}" class="img-fluid rounded" width ="450em" height="450em"></div>
                     {% else %}
-                        <div class="col  homehabitatcol"><img src="{{ habitatimage.getImageData() }}" class="img-fluid rounded" width ="150em" height="150em"></div>
+                        <div class="col  homehabitatcol"><img src="{{ habitatimage.getImageData() }}" class="img-fluid rounded" width ="450em" height="450em"></div>
                     {% endif %}
                 </div>
             </a></br></br>
         {% else %}
-            <div class="row homehabitatrow" style="margin-top: 50%;" >
-                    <div class="col  homehabitatcol">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitat.nom }}</div>
-                    <div class="col  homehabitatcol"></div>
-                </div></br></br>
+            <div class="row homehabitatrow">
+                <div class="col  homehabitatcol">Les animaux de l'habitat  &nbsp;&nbsp;  {{ habitats.nom }}</div>
+                <div class="col  homehabitatcol"></div>
+            </div></br></br>
         {% endfor %}</br></br>
         {% for animals in habitats.getAnimal() %}
             <div class="col-sm-6 col-md-4 col-lg-3">
@@ -37,6 +41,7 @@
                             <div class="card-body">
                                 <div class="card-text">{{ animals.etat }}</div>
                                 <div class="card-text">Le race d'animal est - {{ animals.race.label }}</div>
+                                <div class="card-text">{{ animals.etat }}</div>
                             </div>
                         {% endfor %}
                     {% else %}

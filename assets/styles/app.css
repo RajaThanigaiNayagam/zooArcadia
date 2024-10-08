@@ -279,6 +279,65 @@ form label {
 	text-align : center;
     font-weight: bold;
 }
+
+
+.homehabitatrow > a {
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+    font-weight: bold;
+}
+
+
+.homehabitatcol h1{
+    font-size: 2em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+.homehabitatcol h2{
+    font-size: 1.8em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+
+.homehabitatcol h3{
+    font-size: 1.6em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+.homehabitatcol h4{
+    font-size: 1.4em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+	text-align : center;
+    font-weight: bold;
+}
+
+.homehabitatcol h5{
+    font-size: 1.2em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+    text-decoration: none;
+	text-align : center;
+    font-weight: bold;
+}
+
+.homehabitatcol h6{
+    font-size: 0.8em;
+    color: #fff;
+    font-family: 'Rancho-Regular';
+    text-decoration: none !important;;
+	text-align : left;
+    font-weight: bold;
+}
+
+
 .avis_section form label {   
     width: 100%;
     color: #105030;
