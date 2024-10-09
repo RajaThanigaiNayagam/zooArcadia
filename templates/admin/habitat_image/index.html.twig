@@ -42,6 +42,10 @@
             {% endfor %}
             </tbody>
         </table>
+    
+        <div class="pagination">
+            {{ knp_pagination_render(habitatimages) }}
+        </div> <br>
 
         <a href="{{ path('app_admin_habitat_image_new') }}"><button class="btn btn-outline-success my-3">Créer nouveau</button></a>
     </div>
